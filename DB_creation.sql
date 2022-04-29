@@ -1,5 +1,7 @@
 CREATE DATABASE `airport`;
 
+USE `airport`;
+
 CREATE TABLE Countries (
 	ID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     country_name VARCHAR(45) NOT NULL
@@ -7,7 +9,9 @@ CREATE TABLE Countries (
 
 CREATE TABLE Cities (
 	ID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    city_name VARCHAR(25) NOT NULL
+    city_name VARCHAR(25) NOT NULL,
+	country_ID INT,
+    FOREIGN KEY (country_ID) REFERENCES Countries(ID)
 )ENGINE=INNODB;
 
 CREATE TABLE Airlines (
@@ -48,9 +52,7 @@ CREATE TABLE Airports (
 	ID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     airport_name VARCHAR(45) NOT NULL,
     planes_capacity INT NOT NULL,
-    country_ID INT,
     city_ID INT,
-	FOREIGN KEY (country_ID) REFERENCES Countries(ID),
     FOREIGN KEY (city_ID) REFERENCES Cities(ID)
 )ENGINE=INNODB;
 
@@ -73,12 +75,12 @@ FOREIGN KEY (arrival_airport_ID) REFERENCES Airports(ID)
 CREATE TABLE Flights (
 	ID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     plane_ID int,
-    airline_ID int,
+
     pilot_ID int,
     route_ID int,
     price_usd int NOT NULL,
     FOREIGN KEY (plane_ID) REFERENCES Planes(ID),
-    FOREIGN KEY (airline_ID) REFERENCES Airlines(ID),
+
     FOREIGN KEY (pilot_ID) REFERENCES Pilots(ID),
     FOREIGN KEY (route_ID) REFERENCES Routes(ID)
 )ENGINE=INNODB;
@@ -88,10 +90,8 @@ CREATE TABLE Tickets (
     price_usd int NOT NULL,
     passenger_ID INT,
     flight_ID INT,
-    luggage_ID INT,
     FOREIGN KEY (passenger_ID) REFERENCES Passengers(ID),
-    FOREIGN KEY (flight_ID) REFERENCES Flights(ID),
-    FOREIGN KEY (luggage_ID) REFERENCES Luggages(ID)
+    FOREIGN KEY (flight_ID) REFERENCES Flights(ID)
 )ENGINE=INNODB;
 
 

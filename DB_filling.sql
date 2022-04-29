@@ -4,15 +4,6 @@ VALUES ("Qatar Airways", 1350),
 ("Iberia", 820),
 ("Emirates", 1666);
 
-INSERT INTO cities (city_name)
-VALUES ("Buenos Aires"),
-("Minsk"),
-("Nueva York"),
-("London"),
-("París"),
-("Sydney"),
-("Ciudad de Mexico");
-
 INSERT INTO countries (country_name)
 VALUES ("Argentina"),
 ("Belarus"),
@@ -22,21 +13,23 @@ VALUES ("Argentina"),
 ("Australia"),
 ("Mexico");
 
-INSERT INTO airports (airport_name,planes_capacity, city_ID, country_ID)
-VALUES ("Aeropuerto Internacional de Ezeiza", 183, (SELECT ID FROM cities WHERE city_name = "Buenos Aires"),
-(SELECT ID FROM countries WHERE country_name = "Argentina")),
-("Minsk International Airport", 198, (SELECT ID FROM cities WHERE city_name = "Minsk"),
-(SELECT ID FROM countries WHERE country_name = "Belarus")),
-(" John F. Kennedy International Airport ", 356, (SELECT ID FROM cities WHERE city_name = "Nueva York"),
-(SELECT ID FROM countries WHERE country_name = "United States")),
-("Heathrow Airport", 398, (SELECT ID FROM cities WHERE city_name = "London"),
-(SELECT ID FROM countries WHERE country_name = "England")),
-("Paris-Charles de Gaulle International Airport", 281, (SELECT ID FROM cities WHERE city_name = "París"),
-(SELECT ID FROM countries WHERE country_name = "France")),
-("Sydney Kingsford Smith Airport", 188, (SELECT ID FROM cities WHERE city_name = "Sydney"),
-(SELECT ID FROM countries WHERE country_name = "Australia")),
-("Mexico City International Airport ", 212, (SELECT ID FROM cities WHERE city_name = "Ciudad de Mexico"),
-(SELECT ID FROM countries WHERE country_name = "Mexico"));
+INSERT INTO cities (city_name, country_ID)
+VALUES ("Buenos Aires", (SELECT ID FROM countries WHERE country_name ="Argentina")),
+("Minsk", (SELECT ID FROM countries WHERE country_name ="Belarus")),
+("Nueva York", (SELECT ID FROM countries WHERE country_name ="United States")),
+("London", (SELECT ID FROM countries WHERE country_name ="England")),
+("París", (SELECT ID FROM countries WHERE country_name ="France")),
+("Sydney", (SELECT ID FROM countries WHERE country_name ="Australia")),
+("Ciudad de Mexico", (SELECT ID FROM countries WHERE country_name ="Mexico"));
+
+INSERT INTO airports (airport_name,planes_capacity, city_ID)
+VALUES ("Aeropuerto Internacional de Ezeiza", 183, (SELECT ID FROM cities WHERE city_name = "Buenos Aires")),
+("Minsk International Airport", 198, (SELECT ID FROM cities WHERE city_name = "Minsk")),
+(" John F. Kennedy International Airport ", 356, (SELECT ID FROM cities WHERE city_name = "Nueva York")),
+("Heathrow Airport", 398, (SELECT ID FROM cities WHERE city_name = "London")),
+("Paris-Charles de Gaulle International Airport", 281, (SELECT ID FROM cities WHERE city_name = "París")),
+("Sydney Kingsford Smith Airport", 188, (SELECT ID FROM cities WHERE city_name = "Sydney")),
+("Mexico City International Airport ", 212, (SELECT ID FROM cities WHERE city_name = "Ciudad de Mexico"));
 
 INSERT INTO airlines_in_airports (airline_ID,airport_ID)
 VALUES (1,1),(1,2),(1,4),(1,5),(1,7),(2,3),(2,2),(2,6),(2,1),(3,1),(3,4),(3,2),(3,6),(3,5),(4,1),(4,2),(4,4),(4,6),(4,7);
@@ -70,7 +63,7 @@ VALUES (17.5,1),
 INSERT INTO routes (departure_airport_ID,arrival_airport_ID)
 VALUES (1,4),(1,3),(1,5),(1,7),(2,4),(2,6),(2,1),(3,2),(3,4),(3,6),(4,1),(4,2),(4,5);
 
-INSERT INTO flights (plane_ID,airline_ID,pilot_ID,route_ID, price_usd)
-VALUES (1,4,2,1,200),(2,2,4,2,250),(3,2,3,3,400),(1,4,7,4,350),(2,3,6,5,600),(3,2,5,6,420),(2,2,1,8,190),(1,1,7,7,490),(3,4,2,9,360)
-,(1,1,3,10,210),(2,2,4,11,350),(1,4,7,12,420),(2,3,6,13,570);
+INSERT INTO flights (plane_ID,pilot_ID,route_ID, price_usd)
+VALUES (1,2,1,200),(2,4,2,250),(3,3,3,400),(1,7,4,350),(2,6,5,600),(3,5,6,420),(2,1,8,190),(1,7,7,490),(3,2,9,360)
+,(1,3,10,210),(2,4,11,350),(1,7,12,420),(2,6,13,570);
 
