@@ -68,6 +68,9 @@ drop column flight_date;
 alter table cities
 add column pupulation int NULL;
 
+INSERT INTO tickets (price_usd,passenger_ID,flight_ID)
+values (500,2,4);
+
 select * from airports
 join cities on cities.ID = city_ID
 join countries on countries.ID = cities.country_ID
