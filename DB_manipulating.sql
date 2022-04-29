@@ -71,14 +71,14 @@ add column pupulation int NULL;
 select * from airports
 join cities on cities.ID = city_ID
 join countries on countries.ID = cities.country_ID
-join pilots
-join airlines
-join flights
-join routes
-join planes
-join passengers
-join luggages
-join tickets;
+join routes on departure_airport_ID = airports.ID
+join flights on flights.route_ID = routes.ID
+join pilots on pilots.ID = flights.pilot_ID
+join airlines on airlines.ID = pilots.employed_by_airline
+join planes on planes.ID = flights.plane_ID
+join tickets on flights.ID = tickets.flight_ID
+join passengers on passengers.ID = tickets.passenger_ID
+join luggages on luggages.owner_ID = passengers.ID;
 
 select * from flights
 inner join planes on planes.ID = plane_ID;
@@ -124,4 +124,5 @@ having working_planes < avg(working_planes);
 select sum(working_planes) from airlines;
 
 select*, count(working_planes) from airlines
-where working_planes >=1000;
+where working_planes >=1000
+LIMIT 10;
