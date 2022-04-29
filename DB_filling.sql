@@ -1,3 +1,5 @@
+USE `airport`;
+
 INSERT INTO airlines (airline_name, working_planes)
 VALUES ("Qatar Airways", 1350),
 ("American Airlines", 1826),
