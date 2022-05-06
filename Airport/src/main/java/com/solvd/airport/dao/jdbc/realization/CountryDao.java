@@ -24,6 +24,30 @@ public class CountryDao extends abstractJDBCDao implements ICountryDao {
 		}
 	}
 
+	public Country getByCityId(long id) throws SQLException {
+		String getByCityIdQuery = "Select * from cities join countries on countries.ID=cities.country_ID where cities.id=?";
+		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(getByCityIdQuery);) {
+			ps.setLong(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			return new Country(rs.getString("country_name"));
+		} catch (SQLException e) {
+			throw new SQLException();
+		}
+	}
+
+	public Country getByAirportId(long id) throws SQLException {
+		String getByCityIdQuery = "Select * from airports join cities on cities.ID = airports.city_ID join countries on countries.ID = cities.country_ID where airports.id=?";
+		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(getByCityIdQuery);) {
+			ps.setLong(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			return new Country(rs.getString("country_name"));
+		} catch (SQLException e) {
+			throw new SQLException();
+		}
+	}
+
 	@Override
 	public List<Country> getAll() {
 		// TODO Auto-generated method stub

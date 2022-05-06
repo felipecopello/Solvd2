@@ -1,20 +1,20 @@
 package com.solvd.airport.entities;
 
 public class Luggage {
-	private int weight;
+	private float weight;
 
 	public Luggage() {
 	};
 
-	public Luggage(int weight) {
+	public Luggage(float weight) {
 		this.weight = weight;
 	}
 
-	public int getWeight() {
+	public float getWeight() {
 		return weight;
 	}
 
-	public void setWeight(int weight) {
+	public void setWeight(float weight) {
 		this.weight = weight;
 	}
 

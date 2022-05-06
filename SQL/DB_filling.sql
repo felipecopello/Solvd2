@@ -57,7 +57,9 @@ VALUES("Boeing 747-8",421),
 ("Boeing Unified 787-8", 192);
 
 INSERT INTO luggages (weight_in_kg,owner_ID)
-VALUES (17.5,1),
+VALUES (17,1),
+(14.5,1),
+(22,1),
 (20.3,2),
 (12.1,3),
 (25.0,4);

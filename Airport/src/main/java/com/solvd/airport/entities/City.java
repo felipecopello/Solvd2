@@ -3,13 +3,14 @@ package com.solvd.airport.entities;
 public class City {
 	private String name;
 	private Country country;
+	private int population;
 
 	public City() {
 	};
 
-	public City(String name, Country country) {
+	public City(String name, int population) {
 		this.name = name;
-		this.country = country;
+		this.population = population;
 	}
 
 	public String getName() {
@@ -26,6 +27,14 @@ public class City {
 
 	public void setCountry(Country country) {
 		this.country = country;
+	}
+
+	public int getPopulation() {
+		return population;
+	}
+
+	public void setPopulation(int population) {
+		this.population = population;
 	}
 
 	@Override

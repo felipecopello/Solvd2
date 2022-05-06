@@ -7,44 +7,43 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.solvd.airport.connection.abstractJDBCDao;
-import com.solvd.airport.entities.Pilot;
-import com.solvd.airport.interfaces.IPilotDao;
+import com.solvd.airport.entities.Passenger;
+import com.solvd.airport.interfaces.IPassengerDao;
 
-public class PilotDao extends abstractJDBCDao implements IPilotDao {
+public class PassengerDao extends abstractJDBCDao implements IPassengerDao {
 
-	public Pilot getById(long id) throws SQLException {
-		String query = "Select * from pilots where id = ?";
+	public Passenger getById(long id) throws SQLException {
+		String query = "Select * from passengers where id = ?";
 		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
-			return new Pilot(rs.getString("pilot_name"), rs.getInt("age"));
+			return new Passenger(rs.getString("passenger_name"), rs.getInt("age"), rs.getString("email"));
 		} catch (SQLException e) {
 			throw new SQLException();
 		}
 	}
 
-	// Preguntar que hay que hacer con los metodos heredados de la IEntityDao
 	@Override
-	public List<Pilot> getAll() {
+	public List<Passenger> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void save(Pilot t) {
+	public void save(Passenger t) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void update(Pilot t, String[] params) {
+	public void update(Passenger t, String[] params) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void delete(Pilot t) {
+	public void delete(Passenger t) {
 		// TODO Auto-generated method stub
 
 	}

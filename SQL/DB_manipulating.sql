@@ -72,7 +72,7 @@ INSERT INTO tickets (price_usd,passenger_ID,flight_ID)
 values (500,2,4);
 
 select * from airports
-join cities on cities.ID = city_ID
+join cities on cities.ID = airports.city_ID
 join countries on countries.ID = cities.country_ID
 join routes on departure_airport_ID = airports.ID
 join flights on flights.route_ID = routes.ID
@@ -133,3 +133,15 @@ LIMIT 10;
 select* from pilots
 join airlines on airlines.ID=pilots.employed_by_airline 
 where pilots.id=1;
+
+Select * from cities
+join countries on countries.ID=cities.country_ID where cities.id=1;
+
+Select * from airports join cities on cities.ID=airports.city_ID where airports.id=1;
+
+select * from airports
+join cities on cities.ID = airports.city_ID
+join countries on countries.ID = cities.country_ID
+where airports.id=1;
+
+Select * from luggages join passengers on passengers.id = luggages.owner_ID where  passengers.id=1 ;
