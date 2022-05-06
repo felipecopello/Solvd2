@@ -6,15 +6,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.solvd.airport.dao.interfaces.IAirlineDao;
+import com.solvd.airport.connection.abstractJDBCDao;
 import com.solvd.airport.entities.Airline;
+import com.solvd.airport.interfaces.IAirlineDao;
 
 public class AirlineDao extends abstractJDBCDao implements IAirlineDao {
-	private String query = "Select * from airlines where id = ?";
 
 	public Airline getById(long id) throws SQLException {
-
+		String query = "Select * from airlines where id = ?";
 		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
+			ps.setLong(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			return new Airline(rs.getString("airline_name"), rs.getInt("working_planes"));
+		} catch (SQLException e) {
+			throw new SQLException();
+		}
+	}
+
+	public Airline getByPilotId(long id) throws SQLException {
+		String getByPilotIdQuery = "Select * from pilots join airlines on airlines.ID=pilots.employed_by_airline where pilots.id=?";
+		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(getByPilotIdQuery);) {
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
@@ -46,14 +58,6 @@ public class AirlineDao extends abstractJDBCDao implements IAirlineDao {
 	public void delete(Airline t) {
 		// TODO Auto-generated method stub
 
-	}
-
-	public String getQuery() {
-		return query;
-	}
-
-	public void setQuery(String query) {
-		this.query = query;
 	}
 
 }

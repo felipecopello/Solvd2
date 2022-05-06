@@ -1,4 +1,4 @@
-package com.solvd.airport.dao.interfaces;
+package com.solvd.airport.interfaces;
 
 import java.sql.SQLException;
 import java.util.List;

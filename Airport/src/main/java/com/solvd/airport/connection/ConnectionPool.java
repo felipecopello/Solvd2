@@ -7,38 +7,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConnectionPool implements IConnectionPool {
-	private String url;
+	private static String url = "jdbc:mysql://127.0.0.1:3306/airport?user=root";
 	private String user;
 	private String password;
-	private List<Connection> connectionPool;
-	private List<Connection> usedConnections = new ArrayList<>();
 	private static int INITIAL_POOL_SIZE = 10;
+	private static List<Connection> connectionPool = new ArrayList<>(INITIAL_POOL_SIZE);
+	private List<Connection> usedConnections = new ArrayList<>();
 
-	public ConnectionPool() {
+	private static ConnectionPool INSTANCE = null;
+
+	private ConnectionPool() {
 	}
 
-	public ConnectionPool(String url, String user, String password, List<Connection> pool) {
-		this.url = url;
+	private ConnectionPool(String url, String user, String password, List<Connection> pool) {
+		ConnectionPool.url = url;
 		this.user = user;
 		this.password = password;
-		this.connectionPool = pool;
+		ConnectionPool.connectionPool = pool;
 	}
 
-	public ConnectionPool(String url, List<Connection> pool) {
-		this.url = url;
-		this.connectionPool = pool;
+	private ConnectionPool(String url, List<Connection> pool) {
+		ConnectionPool.url = url;
+		ConnectionPool.connectionPool = pool;
 	}
 
-	public static ConnectionPool getInstance() {
-		return new ConnectionPool();
-	}
-
-	public static ConnectionPool create(String url) throws SQLException {
-		List<Connection> pool = new ArrayList<>(INITIAL_POOL_SIZE);
-		for (int i = 0; i < INITIAL_POOL_SIZE; i++) {
-			pool.add(createConnection(url));
+	public static ConnectionPool getInstance() throws SQLException {
+		if (INSTANCE == null) {
+			INSTANCE = new ConnectionPool();
+			initializeConnections();
 		}
-		return new ConnectionPool(url, pool);
+		return INSTANCE;
+	}
+
+	public static void initializeConnections() throws SQLException {
+		for (int i = 0; i < INITIAL_POOL_SIZE; i++) {
+			connectionPool.add(createConnection(url));
+		}
 	}
 
 	public static ConnectionPool create(String url, String user, String password) throws SQLException {
@@ -79,7 +83,7 @@ public class ConnectionPool implements IConnectionPool {
 	}
 
 	public void setUrl(String url) {
-		this.url = url;
+		ConnectionPool.url = url;
 	}
 
 	public String getUser() {

@@ -3,6 +3,7 @@ package com.solvd.airport.entities;
 public class Airport {
 	private String name;
 	private int planesCapacity;
+	private City city;
 
 	public Airport() {
 	};
@@ -27,4 +28,18 @@ public class Airport {
 	public void setPlanesCapacity(int planesCapacity) {
 		this.planesCapacity = planesCapacity;
 	}
+
+	@Override
+	public String toString() {
+		return "Airport [name=" + name + ", planesCapacity=" + planesCapacity + "]";
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
 }

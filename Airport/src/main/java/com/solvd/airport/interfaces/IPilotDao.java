@@ -1,4 +1,4 @@
-package com.solvd.airport.dao.interfaces;
+package com.solvd.airport.interfaces;
 
 import com.solvd.airport.entities.Pilot;
 

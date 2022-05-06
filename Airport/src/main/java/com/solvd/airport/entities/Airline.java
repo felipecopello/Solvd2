@@ -28,4 +28,9 @@ public class Airline {
 		this.workingPlanes = workingPlanes;
 	}
 
+	@Override
+	public String toString() {
+		return "Airline [name=" + name + ", workingPlanes=" + workingPlanes + "]";
+	}
+
 }

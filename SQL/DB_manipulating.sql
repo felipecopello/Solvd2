@@ -129,3 +129,7 @@ select sum(working_planes) from airlines;
 select*, count(working_planes) from airlines
 where working_planes >=1000
 LIMIT 10;
+
+select* from pilots
+join airlines on airlines.ID=pilots.employed_by_airline 
+where pilots.id=1;

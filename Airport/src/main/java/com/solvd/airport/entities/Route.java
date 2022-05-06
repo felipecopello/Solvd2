@@ -27,4 +27,10 @@ public class Route {
 	public void setArrivalAirport(Airport arrivalAirport) {
 		this.arrivalAirport = arrivalAirport;
 	}
+
+	@Override
+	public String toString() {
+		return "Route [departureAirport=" + departureAirport + ", arrivalAirport=" + arrivalAirport + "]";
+	}
+
 }

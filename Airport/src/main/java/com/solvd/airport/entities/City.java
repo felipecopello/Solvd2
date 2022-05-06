@@ -27,4 +27,10 @@ public class City {
 	public void setCountry(Country country) {
 		this.country = country;
 	}
+
+	@Override
+	public String toString() {
+		return "City [name=" + name + ", country=" + country + "]";
+	}
+
 }

@@ -28,4 +28,9 @@ public class Plane {
 		this.capacity = capacity;
 	}
 
+	@Override
+	public String toString() {
+		return "Plane [model=" + model + ", capacity=" + capacity + "]";
+	}
+
 }

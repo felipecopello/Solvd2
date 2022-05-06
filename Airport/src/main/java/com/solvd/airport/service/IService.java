@@ -1,4 +1,4 @@
-package com.solvd.airport.dao.service;
+package com.solvd.airport.service;
 
 public interface IService<T> {
 	// que va aca?

@@ -2,14 +2,12 @@ package com.solvd.airport.entities;
 
 public class Luggage {
 	private int weight;
-	private Passenger owner;
 
 	public Luggage() {
 	};
 
-	public Luggage(int weight, Passenger owner) {
+	public Luggage(int weight) {
 		this.weight = weight;
-		this.owner = owner;
 	}
 
 	public int getWeight() {
@@ -20,11 +18,9 @@ public class Luggage {
 		this.weight = weight;
 	}
 
-	public Passenger getOwner() {
-		return owner;
+	@Override
+	public String toString() {
+		return "Luggage [weight=" + weight + "]";
 	}
 
-	public void setOwner(Passenger owner) {
-		this.owner = owner;
-	}
 }
