@@ -13,18 +13,29 @@ import com.solvd.airport.interfaces.IPilotDao;
 public class PilotDao extends abstractJDBCDao implements IPilotDao {
 
 	public Pilot getById(long id) throws SQLException {
-		String query = "Select * from pilots where id = ?";
+		String query = "Select * from Pilots where ID = ?";
 		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
-			return new Pilot(rs.getString("pilot_name"), rs.getInt("age"));
+			return new Pilot(rs.getInt("ID"), rs.getString("pilot_name"), rs.getInt("age"));
 		} catch (SQLException e) {
 			throw new SQLException();
 		}
 	}
 
-	// Preguntar que hay que hacer con los metodos heredados de la IEntityDao
+	public Pilot getByFlightId(long id) throws SQLException {
+		String query = "Select * from Pilots join Flights on Flights.pilot_ID=Pilots.ID where Flights.ID = ?";
+		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
+			ps.setLong(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			return new Pilot(rs.getInt("ID"), rs.getString("pilot_name"), rs.getInt("age"));
+		} catch (SQLException e) {
+			throw new SQLException();
+		}
+	}
+
 	@Override
 	public List<Pilot> getAll() {
 		// TODO Auto-generated method stub

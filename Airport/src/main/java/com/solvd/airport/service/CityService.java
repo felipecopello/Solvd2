@@ -1,6 +1,8 @@
 package com.solvd.airport.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.solvd.airport.dao.jdbc.realization.CityDao;
 import com.solvd.airport.dao.jdbc.realization.CountryDao;
@@ -24,5 +26,23 @@ public class CityService {
 			e.printStackTrace();
 		}
 		return city;
+	}
+
+	public List<City> getAllCities() {
+		List<City> cityList = new ArrayList<>();
+		try {
+			cityList = cityDao.getAll();
+			cityList.forEach((city) -> {
+				try {
+					Country country = countryDao.getByCityId(city.getCityId());
+					city.setCountry(country);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			});
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cityList;
 	}
 }

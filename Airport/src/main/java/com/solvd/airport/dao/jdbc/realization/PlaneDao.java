@@ -4,65 +4,58 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.solvd.airport.connection.abstractJDBCDao;
-import com.solvd.airport.entities.Luggage;
-import com.solvd.airport.interfaces.ILuggageDao;
+import com.solvd.airport.entities.Plane;
+import com.solvd.airport.interfaces.IPlaneDao;
 
-public class LuggageDao extends abstractJDBCDao implements ILuggageDao {
+public class PlaneDao extends abstractJDBCDao implements IPlaneDao {
 
-	public Luggage getById(long id) throws SQLException {
-		String query = "Select * from Luggages where ID = ?";
+	public Plane getById(long id) throws SQLException {
+		String query = "Select * from Planes where ID = ?";
 		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
-			return new Luggage(rs.getFloat("weight_in_kg"));
+			return new Plane(rs.getString("model"), rs.getInt("capacity"));
 		} catch (SQLException e) {
 			throw new SQLException();
 		}
 	}
 
-	public List<Luggage> getByPassengerId(long id) throws SQLException {
-		String query = "Select * from Luggages join Passengers on Passengers.ID = Luggages.owner_ID where  Passengers.ID=? ";
-		List<Luggage> luggages = new ArrayList<Luggage>();
+	public Plane getByFlightId(long id) throws SQLException {
+		String query = "Select * from Planes join Flights on Flights.plane_ID=Planes.ID where Planes.ID =?";
 		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				Luggage luggage = new Luggage(rs.getFloat("weight_in_kg"));
-				luggages.add(luggage);
-			}
-			return luggages;
-
+			rs.next();
+			return new Plane(rs.getString("model"), rs.getInt("capacity"));
 		} catch (SQLException e) {
 			throw new SQLException();
 		}
 	}
 
 	@Override
-	public List<Luggage> getAll() {
+	public List<Plane> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void save(Luggage t) {
+	public void save(Plane t) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void update(Luggage t, String[] params) {
+	public void update(Plane t, String[] params) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void delete(Luggage t) {
+	public void delete(Plane t) {
 		// TODO Auto-generated method stub
 
 	}

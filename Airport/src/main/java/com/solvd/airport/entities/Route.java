@@ -1,15 +1,30 @@
 package com.solvd.airport.entities;
 
 public class Route {
+	private int arrivalAirportId;
+	private int departureAirportId;
 	private Airport departureAirport;
 	private Airport arrivalAirport;
 
-	Route() {
+	public Route() {
 	};
+
+	public Route(int departureAirportId, int arrivalAirportId) {
+		this.arrivalAirportId = arrivalAirportId;
+		this.departureAirportId = departureAirportId;
+	}
 
 	public Route(Airport departureAirport, Airport arrivalAirport) {
 		this.departureAirport = departureAirport;
 		this.arrivalAirport = arrivalAirport;
+	}
+
+	public int getDepartureAirportId() {
+		return departureAirportId;
+	}
+
+	public void setDepartureAirportId(int departureAirportId) {
+		this.departureAirportId = departureAirportId;
 	}
 
 	public Airport getDepartureAirport() {
@@ -30,7 +45,16 @@ public class Route {
 
 	@Override
 	public String toString() {
-		return "Route [departureAirport=" + departureAirport + ", arrivalAirport=" + arrivalAirport + "]";
+		return "Route [departureAirportId=" + departureAirportId + ", arrivalAirportId=" + arrivalAirportId
+				+ ", departureAirport=" + departureAirport + ", arrivalAirport=" + arrivalAirport + "]";
+	}
+
+	public int getArrivalAirportId() {
+		return arrivalAirportId;
+	}
+
+	public void setArrivalAirportId(int arrivalAirportId) {
+		this.arrivalAirportId = arrivalAirportId;
 	}
 
 }

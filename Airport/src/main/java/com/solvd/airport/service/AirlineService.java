@@ -1,6 +1,8 @@
 package com.solvd.airport.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.solvd.airport.dao.jdbc.realization.AirlineDao;
 import com.solvd.airport.entities.Airline;
@@ -19,13 +21,13 @@ public class AirlineService {
 		return a;
 	}
 
-	public Airline getAirlineByPilotId(long id) {
-		Airline a = new Airline();
+	public List<Airline> getAllAirlines() {
+		List<Airline> airlineList = new ArrayList<>();
 		try {
-			a = airlineDao.getByPilotId(id);
+			airlineList = airlineDao.getAll();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return a;
+		return airlineList;
 	}
 }

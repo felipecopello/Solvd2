@@ -1,12 +1,19 @@
 package com.solvd.airport.entities;
 
 public class City {
+	private long cityId;
 	private String name;
 	private Country country;
 	private int population;
 
 	public City() {
 	};
+
+	public City(long cityId, String name, int population) {
+		this.cityId = cityId;
+		this.name = name;
+		this.population = population;
+	}
 
 	public City(String name, int population) {
 		this.name = name;
@@ -40,6 +47,14 @@ public class City {
 	@Override
 	public String toString() {
 		return "City [name=" + name + ", country=" + country + "]";
+	}
+
+	public long getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(long cityId) {
+		this.cityId = cityId;
 	}
 
 }

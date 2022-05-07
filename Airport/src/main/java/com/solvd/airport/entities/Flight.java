@@ -9,10 +9,7 @@ public class Flight {
 	public Flight() {
 	}
 
-	public Flight(Plane plane, Pilot pilot, Route route, int priceUsd) {
-		this.plane = plane;
-		this.pilot = pilot;
-		this.route = route;
+	public Flight(int priceUsd) {
 		this.priceUsd = priceUsd;
 	}
 

@@ -7,10 +7,11 @@ import java.sql.ResultSet;
 
 class MysqlCon {
 	public static void main(String args[]) {
-		String query = "Select * from pilots where id = ?";
+		String query = "Use Felipe_Copello Select * from Pilots where ID = ?";
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/airport?user=root");
+			Connection con = DriverManager
+					.getConnection("jdbc:mysql://52.59.193.212:3306/Felipe_Copello?user=root?password=devintern");
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setLong(1, 1);
 			ResultSet rs = ps.executeQuery();

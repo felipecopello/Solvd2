@@ -65,7 +65,7 @@ alter column flight_date datetime;
 alter table tickets
 drop column flight_date;
 
-alter table cities
+alter table Cities
 add column pupulation int NULL;
 
 INSERT INTO tickets (price_usd,passenger_ID,flight_ID)
@@ -145,3 +145,31 @@ join countries on countries.ID = cities.country_ID
 where airports.id=1;
 
 Select * from luggages join passengers on passengers.id = luggages.owner_ID where  passengers.id=1 ;
+
+Select * from routes 
+join airports a1 on a1.ID=routes.departure_airport_ID
+join airports a2 on routes.arrival_airport_ID=a2.id
+where routes.id=1 and routes.arrival_airport_ID=a2.id;
+
+Select * from routes where ID=1;
+
+Select * from planes
+join flights on flights.plane_ID=planes.ID where planes.id =1;
+
+Select * from pilots
+join flights on flights.pilot_ID=pilots.ID where pilots.id =3;
+
+Select * from routes
+join flights on flights.route_ID=routes.ID where routes.id =1;
+
+select * from airlines_in_airports 
+join airports on airports.id = airlines_in_airports.airport_ID
+where airline_ID=1;
+
+
+
+
+
+
+
+

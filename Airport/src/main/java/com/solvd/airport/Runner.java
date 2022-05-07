@@ -1,31 +1,48 @@
 package com.solvd.airport;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.solvd.airport.service.CityService;
-import com.solvd.airport.service.CountryService;
-import com.solvd.airport.service.LuggageService;
-import com.solvd.airport.service.PassengerService;
 
 public class Runner {
+	private static final Logger LOGGER = LogManager.getLogger(Runner.class);
+
 	public static void main(String[] arg) {
-		// PilotService pilotS = new PilotService();
-		// System.out.println(pilotS.getPilotById(1).toString());
+		// PilotService pilotService = new PilotService();
+		// LOGGER.info(pilotService.getPilotById(1).toString());
 
-		// AirlineService aS = new AirlineService();
-		// System.out.println(aS.getAirlineById(1).toString());
+		// AirlineService airlineService = new AirlineService();
+		// LOGGER.info(airlineService.getAirlineById(1).toString());
+		// LOGGER.info(airlineService.getAllAirlines().toString());
 
-		// AirportService airS = new AirportService();
-		// System.out.println(airS.getAirportById(1).toString());
+		// AirportService airportService = new AirportService();
+		// LOGGER.info(airportService.getAirportById(1).toString());
+		// LOGGER.info(airportService.getAllAirports().toString());
 
-		CountryService cS = new CountryService();
-		System.out.println(cS.getCountryById(1).toString());
+		// CountryService countryService = new CountryService();
+		// LOGGER.info(countryService.getCountryById(1).toString());
 
-		CityService cityS = new CityService();
-		System.out.println(cityS.getCityById(1).toString());
+		CityService cityService = new CityService();
+		// LOGGER.info(cityService.getCityById(1).toString());
+		LOGGER.info(cityService.getAllCities().toString());
 
-		LuggageService lS = new LuggageService();
-		System.out.println(lS.getLuggageById(1).toString());
+		// LuggageService luggageService = new LuggageService();
+		// LOGGER.info(luggageService.getLuggageById(1).toString());
 
-		PassengerService passengerS = new PassengerService();
-		System.out.println(passengerS.getPassengerById(1).toString());
+		// PassengerService passengerService = new PassengerService();
+		// LOGGER.info(passengerService.getPassengerById(1).toString());
+
+		// RouteService routeService = new RouteService();
+		// LOGGER.info(routeService.getRouteById(1).toString());
+
+		// PlaneService planeService = new PlaneService();
+		// LOGGER.info(planeService.getPlaneById(1).toString());
+
+		// FlightService flightService = new FlightService();
+		// LOGGER.info(flightService.getFlightById(1).toString());
+
+		// AirlineInAirportService aInAService = new AirlineInAirportService();
+		// LOGGER.info(aInAService.getAirportsByAirlineId(1).toString());
 	}
 }

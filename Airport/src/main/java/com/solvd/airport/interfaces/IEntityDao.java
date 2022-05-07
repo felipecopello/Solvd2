@@ -6,7 +6,7 @@ import java.util.List;
 public interface IEntityDao<T> {
 	public T getById(long id) throws SQLException;
 
-	public List<T> getAll();
+	public List<T> getAll() throws SQLException;
 
 	public void save(T t);
 

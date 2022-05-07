@@ -13,7 +13,7 @@ import com.solvd.airport.interfaces.ICountryDao;
 public class CountryDao extends abstractJDBCDao implements ICountryDao {
 
 	public Country getById(long id) throws SQLException {
-		String query = "Select * from countries where id = ?";
+		String query = "Select * from Countries where ID = ?";
 		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -25,7 +25,7 @@ public class CountryDao extends abstractJDBCDao implements ICountryDao {
 	}
 
 	public Country getByCityId(long id) throws SQLException {
-		String getByCityIdQuery = "Select * from cities join countries on countries.ID=cities.country_ID where cities.id=?";
+		String getByCityIdQuery = "Select * from Cities join Countries on Countries.ID=Cities.country_ID where Cities.ID=?";
 		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(getByCityIdQuery);) {
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -37,7 +37,7 @@ public class CountryDao extends abstractJDBCDao implements ICountryDao {
 	}
 
 	public Country getByAirportId(long id) throws SQLException {
-		String getByCityIdQuery = "Select * from airports join cities on cities.ID = airports.city_ID join countries on countries.ID = cities.country_ID where airports.id=?";
+		String getByCityIdQuery = "Select * from Airports join Cities on Cities.ID = Airports.city_ID join Countries on Countries.ID = Cities.country_ID where Airports.ID=?";
 		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(getByCityIdQuery);) {
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();

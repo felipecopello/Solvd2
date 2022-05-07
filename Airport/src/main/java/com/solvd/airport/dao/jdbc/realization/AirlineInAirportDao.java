@@ -8,32 +8,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.solvd.airport.connection.abstractJDBCDao;
+import com.solvd.airport.entities.AirlineInAirport;
 import com.solvd.airport.entities.Airport;
-import com.solvd.airport.interfaces.IAirportDao;
+import com.solvd.airport.interfaces.IAirlineInAirportDao;
 
-public class AirportDao extends abstractJDBCDao implements IAirportDao {
+public class AirlineInAirportDao extends abstractJDBCDao implements IAirlineInAirportDao {
 
-	public Airport getById(long id) throws SQLException {
-		String query = "Select * from Airports where ID = ?";
+	public AirlineInAirport getById(long id) throws SQLException {
+		String query = "Select * from Airlines_In_Airports where ID = ?";
 		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
-			return new Airport(rs.getString("airport_name"), rs.getInt("planes_capacity"));
+			return new AirlineInAirport(rs.getInt("airline_ID"), rs.getInt("airport_ID"));
 		} catch (SQLException e) {
 			throw new SQLException();
 		}
 	}
 
-	@Override
-	public List<Airport> getAll() throws SQLException {
+	public List<Airport> getAirportsByAirlineId(long id) throws SQLException {
 		List<Airport> airports = new ArrayList<>();
-		String query = "Select * from Airports";
+		String query = "Select * from Airlines_In_Airports join Airports on Airports.ID = Airlines_In_Airports.airport_ID where airline_ID=?";
 		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
+			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Airport airport = new Airport(rs.getInt("ID"), rs.getString("airport_name"),
-						rs.getInt("planes_capacity"));
+				Airport airport = new Airport(rs.getString("airport_name"), rs.getInt("planes_capacity"));
 				airports.add(airport);
 			}
 			return airports;
@@ -43,19 +43,25 @@ public class AirportDao extends abstractJDBCDao implements IAirportDao {
 	}
 
 	@Override
-	public void save(Airport t) {
+	public List<AirlineInAirport> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void save(AirlineInAirport t) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void update(Airport t, String[] params) {
+	public void update(AirlineInAirport t, String[] params) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void delete(Airport t) {
+	public void delete(AirlineInAirport t) {
 		// TODO Auto-generated method stub
 
 	}
