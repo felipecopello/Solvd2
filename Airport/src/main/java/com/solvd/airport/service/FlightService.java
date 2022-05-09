@@ -1,6 +1,11 @@
 package com.solvd.airport.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.solvd.airport.dao.jdbc.realization.AirlineDao;
 import com.solvd.airport.dao.jdbc.realization.FlightDao;
@@ -19,6 +24,7 @@ import com.solvd.airport.interfaces.IPlaneDao;
 import com.solvd.airport.interfaces.IRouteDao;
 
 public class FlightService {
+	private static final Logger LOGGER = LogManager.getLogger(AirlineService.class);
 	private IFlightDao flightDao = new FlightDao();
 	private IPlaneDao planeDao = new PlaneDao();
 	private IPilotDao pilotDao = new PilotDao();
@@ -30,6 +36,33 @@ public class FlightService {
 
 		try {
 			flight = flightDao.getById(id);
+			populateFlight(flight);
+		} catch (SQLException e) {
+			LOGGER.info(e.getMessage());
+		}
+		return flight;
+	}
+
+	public List<Flight> getAllFlights() {
+		List<Flight> flightList = new ArrayList<>();
+		try {
+			flightList = flightDao.getAll();
+			flightList.forEach((flight) -> {
+				try {
+					populateFlight(flight);
+				} catch (SQLException e) {
+					LOGGER.info(e.getMessage());
+				}
+			});
+		} catch (SQLException e) {
+			LOGGER.info(e.getMessage());
+		}
+		return flightList;
+	}
+
+	public Flight populateFlight(Flight flight) throws SQLException {
+		long id = flight.getFlightId();
+		try {
 			Plane plane = planeDao.getByFlightId(id);
 			Pilot pilot = pilotDao.getByFlightId(id);
 			Airline airline = airlineDao.getByPilotId(pilot.getPilotId());
@@ -42,9 +75,8 @@ public class FlightService {
 			flight.setPlane(plane);
 			flight.setPilot(pilot);
 			flight.setRoute(route);
-
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return flight;
 	}

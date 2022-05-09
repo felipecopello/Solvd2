@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.solvd.airport.connection.abstractJDBCDao;
@@ -18,16 +19,28 @@ public class PassengerDao extends abstractJDBCDao implements IPassengerDao {
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
-			return new Passenger(rs.getString("passenger_name"), rs.getInt("age"), rs.getString("email"));
+			return new Passenger(rs.getString("passenger_name"), rs.getInt("age"), rs.getString("email"),
+					rs.getLong("ID"));
 		} catch (SQLException e) {
 			throw new SQLException();
 		}
 	}
 
 	@Override
-	public List<Passenger> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Passenger> getAll() throws SQLException {
+		List<Passenger> passengers = new ArrayList<>();
+		String query = "Select * from Passengers";
+		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Passenger passenger = new Passenger(rs.getString("passenger_name"), rs.getInt("age"),
+						rs.getString("email"), rs.getLong("ID"));
+				passengers.add(passenger);
+			}
+			return passengers;
+		} catch (SQLException e) {
+			throw new SQLException();
+		}
 	}
 
 	@Override

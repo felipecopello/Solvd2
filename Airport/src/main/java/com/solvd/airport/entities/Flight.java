@@ -1,6 +1,7 @@
 package com.solvd.airport.entities;
 
 public class Flight {
+	private long flightId;
 	private Plane plane;
 	private Pilot pilot;
 	private Route route;
@@ -9,7 +10,8 @@ public class Flight {
 	public Flight() {
 	}
 
-	public Flight(int priceUsd) {
+	public Flight(long flightId, int priceUsd) {
+		this.flightId = flightId;
 		this.priceUsd = priceUsd;
 	}
 
@@ -48,6 +50,14 @@ public class Flight {
 	@Override
 	public String toString() {
 		return "Flight [plane=" + plane + ", pilot=" + pilot + ", route=" + route + ", priceUsd=" + priceUsd + "]";
+	}
+
+	public long getFlightId() {
+		return flightId;
+	}
+
+	public void setFlightId(long flightId) {
+		this.flightId = flightId;
 	}
 
 }

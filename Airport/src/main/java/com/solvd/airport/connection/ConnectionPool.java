@@ -23,7 +23,7 @@ public class ConnectionPool implements IConnectionPool {
 	private String url = props.getProperty("url");
 	private String user = props.getProperty("user");
 	private String password = props.getProperty("password");
-	private static int INITIAL_POOL_SIZE = 40;
+	private static int INITIAL_POOL_SIZE = 80;
 	private static List<Connection> connectionPool = new ArrayList<>(INITIAL_POOL_SIZE);
 	private List<Connection> usedConnections = new ArrayList<>();
 	private static ConnectionPool INSTANCE = null;

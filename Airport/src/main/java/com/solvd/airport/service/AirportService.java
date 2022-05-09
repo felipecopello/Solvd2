@@ -4,6 +4,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.solvd.airport.dao.jdbc.realization.AirportDao;
 import com.solvd.airport.dao.jdbc.realization.CityDao;
 import com.solvd.airport.dao.jdbc.realization.CountryDao;
@@ -15,6 +18,7 @@ import com.solvd.airport.interfaces.ICityDao;
 import com.solvd.airport.interfaces.ICountryDao;
 
 public class AirportService {
+	private static final Logger LOGGER = LogManager.getLogger(AirlineService.class);
 	private IAirportDao airportDao = new AirportDao();
 	private ICityDao cityDao = new CityDao();
 	private ICountryDao countryDao = new CountryDao();
@@ -28,7 +32,7 @@ public class AirportService {
 			city.setCountry(country);
 			airport.setCity(city);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return airport;
 	}
@@ -44,11 +48,11 @@ public class AirportService {
 					city.setCountry(country);
 					airport.setCity(city);
 				} catch (SQLException e) {
-					e.printStackTrace();
+					LOGGER.info(e.getMessage());
 				}
 			});
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return airportList;
 	}

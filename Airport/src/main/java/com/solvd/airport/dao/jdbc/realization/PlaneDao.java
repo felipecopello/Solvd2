@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.solvd.airport.connection.abstractJDBCDao;
@@ -37,9 +38,19 @@ public class PlaneDao extends abstractJDBCDao implements IPlaneDao {
 	}
 
 	@Override
-	public List<Plane> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Plane> getAll() throws SQLException {
+		List<Plane> planes = new ArrayList<>();
+		String query = "Select * from Planes";
+		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Plane plane = new Plane(rs.getString("model"), rs.getInt("capacity"));
+				planes.add(plane);
+			}
+			return planes;
+		} catch (SQLException e) {
+			throw new SQLException();
+		}
 	}
 
 	@Override

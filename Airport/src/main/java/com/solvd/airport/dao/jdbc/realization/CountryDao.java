@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.solvd.airport.connection.abstractJDBCDao;
@@ -49,9 +50,19 @@ public class CountryDao extends abstractJDBCDao implements ICountryDao {
 	}
 
 	@Override
-	public List<Country> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Country> getAll() throws SQLException {
+		List<Country> countries = new ArrayList<>();
+		String query = "Select * from Countries";
+		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Country country = new Country(rs.getString("country_name"));
+				countries.add(country);
+			}
+			return countries;
+		} catch (SQLException e) {
+			throw new SQLException();
+		}
 	}
 
 	@Override

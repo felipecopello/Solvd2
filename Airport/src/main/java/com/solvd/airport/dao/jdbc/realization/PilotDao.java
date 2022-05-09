@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.solvd.airport.connection.abstractJDBCDao;
@@ -37,9 +38,19 @@ public class PilotDao extends abstractJDBCDao implements IPilotDao {
 	}
 
 	@Override
-	public List<Pilot> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Pilot> getAll() throws SQLException {
+		List<Pilot> pilots = new ArrayList<>();
+		String query = "Select * from Pilots";
+		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Pilot pilot = new Pilot(rs.getInt("ID"), rs.getString("pilot_name"), rs.getInt("age"));
+				pilots.add(pilot);
+			}
+			return pilots;
+		} catch (SQLException e) {
+			throw new SQLException();
+		}
 	}
 
 	@Override

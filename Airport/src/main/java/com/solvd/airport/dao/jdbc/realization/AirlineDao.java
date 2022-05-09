@@ -47,10 +47,11 @@ public class AirlineDao extends abstractJDBCDao implements IAirlineDao {
 				Airline airline = new Airline(rs.getString("airline_name"), rs.getInt("working_planes"));
 				airlines.add(airline);
 			}
-			return airlines;
+
 		} catch (SQLException e) {
 			throw new SQLException();
 		}
+		return airlines;
 	}
 
 	@Override

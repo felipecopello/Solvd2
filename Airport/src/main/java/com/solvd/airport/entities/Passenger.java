@@ -3,15 +3,17 @@ package com.solvd.airport.entities;
 import java.util.List;
 
 public class Passenger extends Person {
+	private long passengerId;
 	private String email;
 	private List<Luggage> luggages;
 
 	public Passenger() {
 	};
 
-	public Passenger(String name, int age, String email) {
+	public Passenger(String name, int age, String email, long id) {
 		super(name, age);
 		this.email = email;
+		this.passengerId = id;
 	}
 
 	public String getEmail() {
@@ -34,6 +36,14 @@ public class Passenger extends Person {
 	public String toString() {
 		return "Passenger [name=" + getName() + ", age=" + getAge() + ",email=" + email + ", luggages=" + luggages
 				+ "]";
+	}
+
+	public long getPassengerId() {
+		return passengerId;
+	}
+
+	public void setPassengerId(long id) {
+		this.passengerId = id;
 	}
 
 }

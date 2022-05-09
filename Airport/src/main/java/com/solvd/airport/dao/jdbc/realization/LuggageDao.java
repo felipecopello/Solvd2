@@ -44,9 +44,19 @@ public class LuggageDao extends abstractJDBCDao implements ILuggageDao {
 	}
 
 	@Override
-	public List<Luggage> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Luggage> getAll() throws SQLException {
+		List<Luggage> luggages = new ArrayList<>();
+		String query = "Select * from Luggages";
+		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Luggage luggage = new Luggage(rs.getFloat("weight_in_kg"));
+				luggages.add(luggage);
+			}
+			return luggages;
+		} catch (SQLException e) {
+			throw new SQLException();
+		}
 	}
 
 	@Override
