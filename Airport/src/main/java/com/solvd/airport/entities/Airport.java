@@ -1,7 +1,7 @@
 package com.solvd.airport.entities;
 
 public class Airport {
-	private int airportId;
+	private long airportId;
 	private String name;
 	private int planesCapacity;
 	private City city;
@@ -9,7 +9,13 @@ public class Airport {
 	public Airport() {
 	};
 
-	public Airport(int airportId, String name, int planesCapacity) {
+	public Airport(String name, int planesCapacity, City city) {
+		this.name = name;
+		this.planesCapacity = planesCapacity;
+		this.city = city;
+	}
+
+	public Airport(long airportId, String name, int planesCapacity) {
 		this.airportId = airportId;
 		this.name = name;
 		this.planesCapacity = planesCapacity;
@@ -49,7 +55,7 @@ public class Airport {
 		this.city = city;
 	}
 
-	public int getAirportId() {
+	public long getAirportId() {
 		return airportId;
 	}
 

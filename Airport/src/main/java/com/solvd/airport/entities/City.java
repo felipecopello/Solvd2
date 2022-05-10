@@ -9,6 +9,12 @@ public class City {
 	public City() {
 	};
 
+	public City(String name, Country country, int population) {
+		this.name = name;
+		this.country = country;
+		this.population = population;
+	}
+
 	public City(long cityId, String name, int population) {
 		this.cityId = cityId;
 		this.name = name;
@@ -46,7 +52,8 @@ public class City {
 
 	@Override
 	public String toString() {
-		return "City [name=" + name + ", country=" + country + "]";
+		return "City [cityId=" + cityId + ", name=" + name + ", country=" + country + ", population=" + population
+				+ "]";
 	}
 
 	public long getCityId() {

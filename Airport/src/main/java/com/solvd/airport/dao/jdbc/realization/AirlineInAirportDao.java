@@ -7,29 +7,35 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.solvd.airport.connection.ConnectionPool;
 import com.solvd.airport.connection.abstractJDBCDao;
 import com.solvd.airport.entities.AirlineInAirport;
 import com.solvd.airport.entities.Airport;
 import com.solvd.airport.interfaces.IAirlineInAirportDao;
 
 public class AirlineInAirportDao extends abstractJDBCDao implements IAirlineInAirportDao {
+	private ConnectionPool cp = getCp();
 
 	public AirlineInAirport getById(long id) throws SQLException {
+		Connection c = cp.getConnection();
 		String query = "Select * from Airlines_In_Airports where ID = ?";
-		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
+		try (PreparedStatement ps = c.prepareStatement(query);) {
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			return new AirlineInAirport(rs.getInt("airline_ID"), rs.getInt("airport_ID"));
 		} catch (SQLException e) {
 			throw new SQLException();
+		} finally {
+			cp.releaseConnection(c);
 		}
 	}
 
 	public List<Airport> getAirportsByAirlineId(long id) throws SQLException {
+		Connection c = cp.getConnection();
 		List<Airport> airports = new ArrayList<>();
 		String query = "Select * from Airlines_In_Airports join Airports on Airports.ID = Airlines_In_Airports.airport_ID where airline_ID=?";
-		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
+		try (PreparedStatement ps = c.prepareStatement(query);) {
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -39,6 +45,8 @@ public class AirlineInAirportDao extends abstractJDBCDao implements IAirlineInAi
 			return airports;
 		} catch (SQLException e) {
 			throw new SQLException();
+		} finally {
+			cp.releaseConnection(c);
 		}
 	}
 

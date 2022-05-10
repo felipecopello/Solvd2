@@ -36,4 +36,12 @@ public class PlaneService {
 		}
 		return planeList;
 	}
+
+	public void updatePlane(Plane plane) {
+		try {
+			planeDao.update(plane);
+		} catch (SQLException e) {
+			LOGGER.info(e.getMessage());
+		}
+	}
 }

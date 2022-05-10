@@ -3,53 +3,78 @@ package com.solvd.airport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.solvd.airport.service.FlightService;
+import com.solvd.airport.connection.ConnectionPool;
+import com.solvd.airport.connection.abstractJDBCDao;
+import com.solvd.airport.entities.Pilot;
+import com.solvd.airport.service.PilotService;
 
-public class Runner {
+public class Runner extends abstractJDBCDao {
 	private static final Logger LOGGER = LogManager.getLogger(Runner.class);
+	private static ConnectionPool cp = getCp();
 
 	public static void main(String[] arg) {
-		// PilotService pilotService = new PilotService();
-		// LOGGER.info(pilotService.getPilotById(1).toString());
-		// LOGGER.info(pilotService.getAllPilots().toString());
 
-		// AirlineService airlineService = new AirlineService();
-		// LOGGER.info(airlineService.getAirlineById(1).toString());
-		// LOGGER.info(airlineService.getAllAirlines().toString());
+//		AirlineService airlineService = new AirlineService();
+		// Airline swiss = new Airline("Swiss", 691);
+//		LOGGER.info(airlineService.getAirlineById(2));
+		// airlineService.saveAirline(swiss);
+		// LOGGER.info(airlineService.getAllAirlines());
 
-		// AirportService airportService = new AirportService();
-		// LOGGER.info(airportService.getAirportById(1).toString());
-		// LOGGER.info(airportService.getAllAirports().toString());
+		PilotService pilotService = new PilotService();
+		Pilot pilotDanna = pilotService.getPilotById(1);
+		LOGGER.info(pilotDanna.getEmployer());
+		String[] updateData = { "50", "2" };
+		pilotService.updatePilot(pilotDanna, updateData);
+		LOGGER.info(pilotService.getPilotById(1));
+//		LOGGER.info(pilotService.getAllPilots());
 
-		// CountryService countryService = new CountryService();
-		// LOGGER.info(countryService.getCountryById(1).toString());
-		// LOGGER.info(countryService.getAllCountries().toString());
+//		CountryService countryService = new CountryService();
+//		Country spain = new Country("Spain");
+//		countryService.saveCountry(spain);
+//		Country españa = countryService.getCountryById(9);
+//		LOGGER.info(countryService.getAllCountries());
 
-		// CityService cityService = new CityService();
-		// LOGGER.info(cityService.getCityById(1).toString());
-		// LOGGER.info(cityService.getAllCities().toString());
+//		CityService cityService = new CityService();
+//		City barcelona = new City("Barcelona", españa, 2500000);
+//		cityService.saveCity(barcelona);
+//		City barna = cityService.getCityById(8);
+//		LOGGER.info(cityService.getAllCities());
 
-		// LuggageService luggageService = new LuggageService();
-		// LOGGER.info(luggageService.getLuggageById(1).toString());
-		// LOGGER.info(luggageService.getAllLuggages().toString());
+//		AirportService airportService = new AirportService();
+//		Airport elPrat = new Airport("Aeropuerto Internacional el Prat", 854, barna);
+//		airportService.saveAirport(elPrat);
+//		LOGGER.info(airportService.getAirportById(1));
+//		LOGGER.info(airportService.getAllAirports());
 
-		// PassengerService passengerService = new PassengerService();
-		// LOGGER.info(passengerService.getPassengerById(1).toString());
-		// LOGGER.info(passengerService.getAllPassengers().toString());
+//		LuggageService luggageService = new LuggageService();
+//		LOGGER.info(luggageService.getLuggageById(1));
+//		LOGGER.info(luggageService.getAllLuggages());
 
-		// RouteService routeService = new RouteService();
-		// LOGGER.info(routeService.getRouteById(1).toString());
-		// LOGGER.info(routeService.getAllRoutes().toString());
+//		PassengerService passengerService = new PassengerService();
+//		LOGGER.info(passengerService.getPassengerById(1));
+//		LOGGER.info(passengerService.getAllPassengers());
 
-		// PlaneService planeService = new PlaneService();
-		// LOGGER.info(planeService.getPlaneById(1).toString());
-		// LOGGER.info(planeService.getAllPlanes().toString());
+//		RouteService routeService = new RouteService();
+//		LOGGER.info(routeService.getRouteById(2));
+//		LOGGER.info(routeService.getAllRoutes());
 
-		FlightService flightService = new FlightService();
-		// LOGGER.info(flightService.getFlightById(1).toString());
-		LOGGER.info(flightService.getAllFlights().toString());
+//		PlaneService planeService = new PlaneService();
+//		Plane plane1 = planeService.getPlaneById(1);
+//		LOGGER.info(plane1);
+//		plane1.setCapacity(598);
+//		planeService.updatePlane(plane1);
+//		LOGGER.info(planeService.getAllPlanes());
 
-		// AirlineInAirportService aInAService = new AirlineInAirportService();
-		// LOGGER.info(aInAService.getAirportsByAirlineId(1).toString());
+//		FlightService flightService = new FlightService();
+//		Flight flight1 = flightService.getFlightById(1);
+//		LOGGER.info(flightService.getFlightById(6));
+//		LOGGER.info(flightService.getAllFlights());
+//		flightService.deleteFlight(flight1);
+		// LOGGER.info(flightService.getAllFlights());
+
+//		AirlineInAirportService aInAService = new AirlineInAirportService();
+//		LOGGER.info(aInAService.getAirportsByAirlineId(1));
+
+		cp.closeAllConnections(cp);
 	}
 }

@@ -14,7 +14,7 @@ public abstract class abstractJDBCDao {
 		}
 	}
 
-	public ConnectionPool getCp() {
+	public static ConnectionPool getCp() {
 		return cp;
 	}
 

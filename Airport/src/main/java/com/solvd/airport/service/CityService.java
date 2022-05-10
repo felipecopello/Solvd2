@@ -49,4 +49,12 @@ public class CityService {
 		}
 		return cityList;
 	}
+
+	public void saveCity(City city) {
+		try {
+			cityDao.save(city);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

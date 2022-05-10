@@ -35,4 +35,12 @@ public class CountryService {
 		return countryList;
 	}
 
+	public void saveCountry(Country country) {
+		try {
+			countryDao.save(country);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

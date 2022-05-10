@@ -49,4 +49,12 @@ public class PilotService {
 		}
 		return pilotList;
 	}
+
+	public void updatePilot(Pilot pilot, String[] params) {
+		try {
+			pilotDao.update(pilot, params);
+		} catch (SQLException e) {
+			LOGGER.info(e.getMessage());
+		}
+	}
 }

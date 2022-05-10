@@ -1,30 +1,20 @@
 package com.solvd.airport.entities;
 
 public class Route {
-	private int arrivalAirportId;
-	private int departureAirportId;
+	private long routeId;
 	private Airport departureAirport;
 	private Airport arrivalAirport;
 
 	public Route() {
 	};
 
-	public Route(int departureAirportId, int arrivalAirportId) {
-		this.arrivalAirportId = arrivalAirportId;
-		this.departureAirportId = departureAirportId;
+	public Route(long routeId) {
+		this.routeId = routeId;
 	}
 
 	public Route(Airport departureAirport, Airport arrivalAirport) {
 		this.departureAirport = departureAirport;
 		this.arrivalAirport = arrivalAirport;
-	}
-
-	public int getDepartureAirportId() {
-		return departureAirportId;
-	}
-
-	public void setDepartureAirportId(int departureAirportId) {
-		this.departureAirportId = departureAirportId;
 	}
 
 	public Airport getDepartureAirport() {
@@ -43,18 +33,18 @@ public class Route {
 		this.arrivalAirport = arrivalAirport;
 	}
 
+	public long getRouteId() {
+		return routeId;
+	}
+
+	public void setRouteId(long routeId) {
+		this.routeId = routeId;
+	}
+
 	@Override
 	public String toString() {
-		return "Route [departureAirportId=" + departureAirportId + ", arrivalAirportId=" + arrivalAirportId
-				+ ", departureAirport=" + departureAirport + ", arrivalAirport=" + arrivalAirport + "]";
-	}
-
-	public int getArrivalAirportId() {
-		return arrivalAirportId;
-	}
-
-	public void setArrivalAirportId(int arrivalAirportId) {
-		this.arrivalAirportId = arrivalAirportId;
+		return "Route [routeId=" + routeId + ", departureAirport=" + departureAirport + ", arrivalAirport="
+				+ arrivalAirport + "]";
 	}
 
 }

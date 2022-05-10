@@ -49,7 +49,8 @@ public class Flight {
 
 	@Override
 	public String toString() {
-		return "Flight [plane=" + plane + ", pilot=" + pilot + ", route=" + route + ", priceUsd=" + priceUsd + "]";
+		return "Flight [flightId=" + flightId + ", plane=" + plane + ", pilot=" + pilot + ", route=" + route
+				+ ", priceUsd=" + priceUsd + "]";
 	}
 
 	public long getFlightId() {

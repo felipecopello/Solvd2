@@ -27,10 +27,7 @@ public class AirportService {
 		Airport airport = new Airport();
 		try {
 			airport = airportDao.getById(id);
-			City city = cityDao.getByAirportId(id);
-			Country country = countryDao.getByAirportId(id);
-			city.setCountry(country);
-			airport.setCity(city);
+			populateAirport(airport);
 		} catch (SQLException e) {
 			LOGGER.info(e.getMessage());
 		}
@@ -42,18 +39,31 @@ public class AirportService {
 		try {
 			airportList = airportDao.getAll();
 			airportList.forEach((airport) -> {
-				try {
-					City city = cityDao.getByAirportId(airport.getAirportId());
-					Country country = countryDao.getByAirportId(airport.getAirportId());
-					city.setCountry(country);
-					airport.setCity(city);
-				} catch (SQLException e) {
-					LOGGER.info(e.getMessage());
-				}
+				populateAirport(airport);
 			});
 		} catch (SQLException e) {
 			LOGGER.info(e.getMessage());
 		}
 		return airportList;
+	}
+
+	public Airport populateAirport(Airport airport) {
+		try {
+			City city = cityDao.getByAirportId(airport.getAirportId());
+			Country country = countryDao.getByAirportId(airport.getAirportId());
+			city.setCountry(country);
+			airport.setCity(city);
+		} catch (SQLException e) {
+			LOGGER.info(e.getMessage());
+		}
+		return airport;
+	}
+
+	public void saveAirport(Airport airport) {
+		try {
+			airportDao.save(airport);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

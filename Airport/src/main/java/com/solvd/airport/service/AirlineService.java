@@ -34,4 +34,13 @@ public class AirlineService {
 		}
 		return airlineList;
 	}
+
+	public void saveAirline(Airline airline) {
+		try {
+			airlineDao.save(airline);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 }

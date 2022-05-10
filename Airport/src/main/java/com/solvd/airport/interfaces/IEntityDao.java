@@ -8,9 +8,9 @@ public interface IEntityDao<T> {
 
 	public List<T> getAll() throws SQLException;
 
-	public void save(T t);
+	public void save(T t) throws SQLException;
 
-	public void update(T t, String[] params);
+	public void update(T t, String[] params) throws SQLException;
 
-	public void delete(T t);
+	public void delete(T t) throws SQLException;
 }

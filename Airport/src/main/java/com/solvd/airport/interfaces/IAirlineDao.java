@@ -8,4 +8,6 @@ public interface IAirlineDao extends IEntityDao<Airline> {
 
 	Airline getByPilotId(long id) throws SQLException;
 
+	void save(Airline airline) throws SQLException;
+
 }

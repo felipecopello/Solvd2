@@ -7,15 +7,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.solvd.airport.connection.ConnectionPool;
 import com.solvd.airport.connection.abstractJDBCDao;
 import com.solvd.airport.entities.Passenger;
 import com.solvd.airport.interfaces.IPassengerDao;
 
 public class PassengerDao extends abstractJDBCDao implements IPassengerDao {
+	private ConnectionPool cp = getCp();
 
 	public Passenger getById(long id) throws SQLException {
+		Connection c = cp.getConnection();
 		String query = "Select * from Passengers where ID = ?";
-		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
+		try (PreparedStatement ps = c.prepareStatement(query);) {
 			ps.setLong(1, id);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
@@ -23,14 +26,17 @@ public class PassengerDao extends abstractJDBCDao implements IPassengerDao {
 					rs.getLong("ID"));
 		} catch (SQLException e) {
 			throw new SQLException();
+		} finally {
+			cp.releaseConnection(c);
 		}
 	}
 
 	@Override
 	public List<Passenger> getAll() throws SQLException {
+		Connection c = cp.getConnection();
 		List<Passenger> passengers = new ArrayList<>();
 		String query = "Select * from Passengers";
-		try (Connection c = getCp().getConnection(); PreparedStatement ps = c.prepareStatement(query);) {
+		try (PreparedStatement ps = c.prepareStatement(query);) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Passenger passenger = new Passenger(rs.getString("passenger_name"), rs.getInt("age"),
@@ -40,7 +46,10 @@ public class PassengerDao extends abstractJDBCDao implements IPassengerDao {
 			return passengers;
 		} catch (SQLException e) {
 			throw new SQLException();
+		} finally {
+			cp.releaseConnection(c);
 		}
+
 	}
 
 	@Override

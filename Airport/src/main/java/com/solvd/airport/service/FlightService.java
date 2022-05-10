@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.solvd.airport.dao.jdbc.realization.AirlineDao;
+import com.solvd.airport.dao.jdbc.realization.AirportDao;
 import com.solvd.airport.dao.jdbc.realization.FlightDao;
 import com.solvd.airport.dao.jdbc.realization.PilotDao;
 import com.solvd.airport.dao.jdbc.realization.PlaneDao;
@@ -18,6 +19,7 @@ import com.solvd.airport.entities.Pilot;
 import com.solvd.airport.entities.Plane;
 import com.solvd.airport.entities.Route;
 import com.solvd.airport.interfaces.IAirlineDao;
+import com.solvd.airport.interfaces.IAirportDao;
 import com.solvd.airport.interfaces.IFlightDao;
 import com.solvd.airport.interfaces.IPilotDao;
 import com.solvd.airport.interfaces.IPlaneDao;
@@ -30,6 +32,8 @@ public class FlightService {
 	private IPilotDao pilotDao = new PilotDao();
 	private IRouteDao routeDao = new RouteDao();
 	private IAirlineDao airlineDao = new AirlineDao();
+	private AirportService airportService = new AirportService();
+	private IAirportDao airportDao = new AirportDao();
 
 	public Flight getFlightById(long id) {
 		Flight flight = new Flight();
@@ -60,25 +64,33 @@ public class FlightService {
 		return flightList;
 	}
 
-	public Flight populateFlight(Flight flight) throws SQLException {
+	public void deleteFlight(Flight flight) {
+		try {
+			flightDao.delete(flight);
+		} catch (SQLException e) {
+			LOGGER.info(e.getMessage());
+		}
+
+	}
+
+	public void populateFlight(Flight flight) throws SQLException {
 		long id = flight.getFlightId();
 		try {
 			Plane plane = planeDao.getByFlightId(id);
 			Pilot pilot = pilotDao.getByFlightId(id);
 			Airline airline = airlineDao.getByPilotId(pilot.getPilotId());
-			Route route = routeDao.getByFlightId(id);
-
-			RouteService routeService = new RouteService();
-			routeService.populateRoute(route);
-
+			Route r = routeDao.getByFlightId(id);
+			r.setDepartureAirport(
+					airportService.populateAirport(airportDao.getDepartureAirportByRouteId(r.getRouteId())));
+			r.setArrivalAirport(
+					airportService.populateAirport(airportDao.getDepartureAirportByRouteId(r.getRouteId())));
 			pilot.setEmployer(airline);
 			flight.setPlane(plane);
 			flight.setPilot(pilot);
-			flight.setRoute(route);
+			flight.setRoute(r);
 		} catch (SQLException e) {
 			LOGGER.info(e.getMessage());
 		}
-		return flight;
 	}
 
 }
