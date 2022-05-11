@@ -5,8 +5,6 @@ import org.apache.logging.log4j.Logger;
 
 import com.solvd.airport.connection.ConnectionPool;
 import com.solvd.airport.connection.abstractJDBCDao;
-import com.solvd.airport.entities.Pilot;
-import com.solvd.airport.service.PilotService;
 
 public class Runner extends abstractJDBCDao {
 	private static final Logger LOGGER = LogManager.getLogger(Runner.class);
@@ -20,12 +18,12 @@ public class Runner extends abstractJDBCDao {
 		// airlineService.saveAirline(swiss);
 		// LOGGER.info(airlineService.getAllAirlines());
 
-		PilotService pilotService = new PilotService();
-		Pilot pilotDanna = pilotService.getPilotById(1);
-		LOGGER.info(pilotDanna.getEmployer());
-		String[] updateData = { "50", "2" };
-		pilotService.updatePilot(pilotDanna, updateData);
-		LOGGER.info(pilotService.getPilotById(1));
+//		PilotService pilotService = new PilotService();
+//		Pilot pilotDanna = pilotService.getPilotById(1);
+//		LOGGER.info(pilotDanna.getEmployer());
+//		String[] updateData = { "50", "2" };
+//		pilotService.updatePilot(pilotDanna, updateData);
+//		LOGGER.info(pilotService.getPilotById(1));
 //		LOGGER.info(pilotService.getAllPilots());
 
 //		CountryService countryService = new CountryService();

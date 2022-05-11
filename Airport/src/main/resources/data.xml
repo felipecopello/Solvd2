@@ -1,0 +1,31 @@
+
+<passengers>
+	<passenger passengerId="100">
+		<name>Pedro Perez</name>
+		<age>41</age>
+		<luggages>
+			<luggage>
+				<weight>18.3</weight>
+			</luggage>
+			<luggage>
+				<weight>11.9</weight>
+			</luggage>
+		</luggages>
+		<email>pepelopez@gmail.com</email>
+	</passenger>
+	
+	<passenger passengerId="101">
+		<name>Susana Xipolitakis</name>
+		<age>67</age>
+		<luggages>
+			<luggage>
+				<weight>5.3</weight>
+			</luggage>
+			<luggage>
+				<weight>21.9</weight>
+			</luggage>
+		</luggages>
+		<email>suxipo67@gmail.com</email>
+	</passenger>
+</passengers>
+
