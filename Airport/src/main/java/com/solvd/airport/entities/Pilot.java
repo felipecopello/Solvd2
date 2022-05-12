@@ -1,5 +1,12 @@
 package com.solvd.airport.entities;
 
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "pilot")
+@XmlType(propOrder = { "pilotId", "employer" })
 public class Pilot extends Person {
 	private int pilotId;
 	private Airline employer;
@@ -16,6 +23,7 @@ public class Pilot extends Person {
 		return employer;
 	}
 
+	@XmlElement(name = "employer")
 	public void setEmployer(Airline employer) {
 		this.employer = employer;
 	}
@@ -29,6 +37,7 @@ public class Pilot extends Person {
 		return pilotId;
 	}
 
+	@XmlAttribute
 	public void setPilotId(int pilotId) {
 		this.pilotId = pilotId;
 	}

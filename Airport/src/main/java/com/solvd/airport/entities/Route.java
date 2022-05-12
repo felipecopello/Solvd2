@@ -1,5 +1,12 @@
 package com.solvd.airport.entities;
 
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "route")
+@XmlType(propOrder = { "routeId", "departureAirport", "arrivalAirport" })
 public class Route {
 	private long routeId;
 	private Airport departureAirport;
@@ -21,6 +28,7 @@ public class Route {
 		return departureAirport;
 	}
 
+	@XmlElement(name = "departureAirport")
 	public void setDepartureAirport(Airport departureAirport) {
 		this.departureAirport = departureAirport;
 	}
@@ -29,6 +37,7 @@ public class Route {
 		return arrivalAirport;
 	}
 
+	@XmlElement(name = "arrivalAirport")
 	public void setArrivalAirport(Airport arrivalAirport) {
 		this.arrivalAirport = arrivalAirport;
 	}
@@ -37,6 +46,7 @@ public class Route {
 		return routeId;
 	}
 
+	@XmlAttribute
 	public void setRouteId(long routeId) {
 		this.routeId = routeId;
 	}

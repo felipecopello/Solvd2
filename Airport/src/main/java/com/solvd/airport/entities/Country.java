@@ -6,6 +6,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "country")
+
 @XmlType(propOrder = { "countryId", "name" })
 public class Country {
 	private long countryId;

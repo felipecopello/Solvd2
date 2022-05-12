@@ -3,11 +3,9 @@ package com.solvd.airport.entities;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlSeeAlso;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "airport")
-@XmlSeeAlso({ City.class, Country.class })
 @XmlType(propOrder = { "airportId", "name", "planesCapacity", "city" })
 public class Airport {
 	private long airportId;

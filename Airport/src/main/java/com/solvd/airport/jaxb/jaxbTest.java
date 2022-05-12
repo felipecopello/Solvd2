@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.solvd.airport.Runner;
+import com.solvd.airport.entities.City;
+import com.solvd.airport.entities.Country;
 import com.solvd.airport.entities.Passenger;
 import com.solvd.airport.entities.Plane;
 
@@ -23,7 +25,7 @@ public class jaxbTest {
 		JAXBContext context = JAXBContext.newInstance(Plane.class);
 		Marshaller mar = context.createMarshaller();
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		mar.marshal(plane, new File("src/main/resources/plane.xml"));
+		mar.marshal(plane, new File("src/main/resources/objectTest.xml"));
 		LOGGER.info("The plane " + plane.getPlaneId() + " was succesfully marshalled");
 	}
 
@@ -37,12 +39,31 @@ public class jaxbTest {
 		return (Passenger) context.createUnmarshaller().unmarshal(new FileReader(path));
 	}
 
-	public static void marshalObject(Object o) throws JAXBException, IOException {
+	public static void marshalPassenger(Passenger passenger) throws JAXBException, IOException {
 
-		JAXBContext context = JAXBContext.newInstance(Object.class);
+		JAXBContext context = JAXBContext.newInstance(Passenger.class);
 		Marshaller mar = context.createMarshaller();
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		mar.marshal(o, new File("src/main/resources/objectTest.xml"));
-		LOGGER.info("The object " + o.toString() + " was succesfully marshalled");
+		mar.marshal(passenger, new File("src/main/resources/objectTest.xml"));
+		LOGGER.info("The object " + passenger.toString() + " was succesfully marshalled");
 	}
+
+	public static void marshalCountry(Country country) throws JAXBException, IOException {
+
+		JAXBContext context = JAXBContext.newInstance(Country.class);
+		Marshaller mar = context.createMarshaller();
+		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		mar.marshal(country, new File("src/main/resources/objectTest.xml"));
+		LOGGER.info("The object " + country.toString() + " was succesfully marshalled");
+	}
+
+	public static void marshalCity(City city) throws JAXBException, IOException {
+
+		JAXBContext context = JAXBContext.newInstance(City.class);
+		Marshaller mar = context.createMarshaller();
+		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		mar.marshal(city, new File("src/main/resources/objectTest.xml"));
+		LOGGER.info("The object " + city.toString() + " was succesfully marshalled");
+	}
+
 }
