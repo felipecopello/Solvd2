@@ -1,5 +1,5 @@
-
-<passengers>
+<entitites xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="data.xsd">
 	<passenger passengerId="100">
 		<name>Pedro Perez</name>
 		<age>41</age>
@@ -27,5 +27,21 @@
 		</luggages>
 		<email>suxipo67@gmail.com</email>
 	</passenger>
-</passengers>
 
+	<city cityId="201">
+		<name>Estambul</name>
+		<country countryId="301">
+			<name>Turquia</name>
+		</country>
+		<population>6500000</population>
+	</city>
+
+	<pilot pilotId="401">
+	<name>Matias Martin</name>
+	<age>55</age>
+	<employer>
+		<name>Aerolineas Argentinas</name>
+		<workingplanes>125</workingplanes>
+	</employer>
+	</pilot>
+</entitites>

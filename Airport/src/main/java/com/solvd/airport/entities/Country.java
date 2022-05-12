@@ -1,5 +1,12 @@
 package com.solvd.airport.entities;
 
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "country")
+@XmlType(propOrder = { "countryId", "name" })
 public class Country {
 	private long countryId;
 	private String name;
@@ -20,6 +27,7 @@ public class Country {
 		return name;
 	}
 
+	@XmlElement(name = "name")
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -33,6 +41,7 @@ public class Country {
 		return countryId;
 	}
 
+	@XmlAttribute
 	public void setCountryId(long countryId) {
 		this.countryId = countryId;
 	}

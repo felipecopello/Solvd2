@@ -1,5 +1,11 @@
 package com.solvd.airport.entities;
 
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "luggage")
+@XmlType(propOrder = { "weight" })
 public class Luggage {
 	private float weight;
 
@@ -14,6 +20,7 @@ public class Luggage {
 		return weight;
 	}
 
+	@XmlElement(name = "weight")
 	public void setWeight(float weight) {
 		this.weight = weight;
 	}

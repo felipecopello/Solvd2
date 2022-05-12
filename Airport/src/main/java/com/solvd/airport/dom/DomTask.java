@@ -21,12 +21,12 @@ public class DomTask {
 
 	private static DocumentBuilder builder;
 
-	public void enteringDocument() {
+	public static void enteringDocument(String classToAccess) {
 		try {
 			builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document doc = builder.parse(new File("src/main/resources/data.xml"));
 			doc.getDocumentElement().normalize();
-			NodeList passengerList = doc.getElementsByTagName("passenger");
+			NodeList passengerList = doc.getElementsByTagName(classToAccess);
 
 			for (int i = 0; i < passengerList.getLength(); i++) {
 				NodeList nodeList = passengerList.item(i).getChildNodes();
@@ -81,6 +81,7 @@ public class DomTask {
 			age.appendChild(newDoc.createTextNode("58"));
 			Element email = newDoc.createElement("email");
 			email.appendChild(newDoc.createTextNode("john@example.com"));
+			printDom(newDoc);
 
 			first.appendChild(name);
 			first.appendChild(age);

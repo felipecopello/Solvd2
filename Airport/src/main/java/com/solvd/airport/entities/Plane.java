@@ -1,5 +1,12 @@
 package com.solvd.airport.entities;
 
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "plane")
+@XmlType(propOrder = { "planeId", "model", "capacity" })
 public class Plane {
 	private long planeId;
 	private String model;
@@ -23,6 +30,7 @@ public class Plane {
 		return model;
 	}
 
+	@XmlElement(name = "model")
 	public void setModel(String model) {
 		this.model = model;
 	}
@@ -31,6 +39,7 @@ public class Plane {
 		return capacity;
 	}
 
+	@XmlElement(name = "capacity")
 	public void setCapacity(Integer capacity) {
 		this.capacity = capacity;
 	}
@@ -44,6 +53,7 @@ public class Plane {
 		return planeId;
 	}
 
+	@XmlAttribute
 	public void setPlaneId(long planeId) {
 		this.planeId = planeId;
 	}
