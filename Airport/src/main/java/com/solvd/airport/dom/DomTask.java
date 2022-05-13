@@ -11,6 +11,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -18,7 +20,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class DomTask {
-
+	private static final Logger LOGGER = LogManager.getLogger(DomTask.class);
 	private static DocumentBuilder builder;
 
 	public static void enteringDocument(String classToAccess) {
@@ -26,26 +28,35 @@ public class DomTask {
 			builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document doc = builder.parse(new File("src/main/resources/data.xml"));
 			doc.getDocumentElement().normalize();
-			NodeList passengerList = doc.getElementsByTagName(classToAccess);
+			Element root = doc.getDocumentElement();
+			;
 
-			for (int i = 0; i < passengerList.getLength(); i++) {
-				NodeList nodeList = passengerList.item(i).getChildNodes();
-				Node current;
-				for (int z = 0; z < nodeList.getLength(); z++) {
-					current = nodeList.item(z);
-					if (current.getNodeType() == Node.ELEMENT_NODE) {
-						System.out.println(current.getNodeName() + ": " + current.getTextContent());
-					}
-				}
-			}
+			recursionDOM(root);
 
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private static void printDom(Document document) throws Exception {
-		DOMSource dom = new DOMSource(document);
+	private static void recursionDOM(Node element) {
+
+		System.out.println(element.getNodeName());
+
+		if (element.hasChildNodes()) {
+			for (Node child = element.getFirstChild(); child != null; child = child.getNextSibling()) {
+				recursionDOM(child);
+			}
+		} else {
+			System.out.println(element.getTextContent());
+		}
+
+	}
+
+	public static void printDom(String path) throws Exception {
+		builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		Document doc = builder.parse(new File("src/main/resources/data.xml"));
+		doc.getDocumentElement().normalize();
+		DOMSource dom = new DOMSource(doc);
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
 		transformer.transform(dom, new StreamResult(System.out));
 	}
@@ -81,7 +92,6 @@ public class DomTask {
 			age.appendChild(newDoc.createTextNode("58"));
 			Element email = newDoc.createElement("email");
 			email.appendChild(newDoc.createTextNode("john@example.com"));
-			printDom(newDoc);
 
 			first.appendChild(name);
 			first.appendChild(age);

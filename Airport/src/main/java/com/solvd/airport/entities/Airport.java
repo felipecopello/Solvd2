@@ -8,6 +8,7 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "airport")
 @XmlType(propOrder = { "airportId", "name", "planesCapacity", "city" })
 public class Airport {
+	@XmlAttribute
 	private long airportId;
 	private String name;
 	private int planesCapacity;

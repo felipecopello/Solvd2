@@ -2,29 +2,42 @@ package com.solvd.airport.entities;
 
 import java.util.List;
 
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "ticket")
+@XmlType(propOrder = { "passenger", "flight", "priceUsd" })
 public class Ticket {
-	private Passenger owner;
+	private Passenger passenger;
 	private List<Flight> flight;
 	private int priceUsd;
 
-	public Ticket(Passenger owner, List<Flight> flight, int priceUsd) {
-		this.owner = owner;
+	public Ticket() {
+	}
+
+	public Ticket(Passenger passenger, List<Flight> flight, int priceUsd) {
+		this.passenger = passenger;
 		this.flight = flight;
 		this.priceUsd = priceUsd;
 	}
 
-	public Passenger getOwner() {
-		return owner;
+	public Passenger getPassenger() {
+		return passenger;
 	}
 
-	public void setOwner(Passenger owner) {
-		this.owner = owner;
+	@XmlElement(name = "passenger")
+	public void setPassenger(Passenger owner) {
+		this.passenger = owner;
 	}
 
 	public List<Flight> getFlight() {
 		return flight;
 	}
 
+	@XmlElementWrapper(name = "flights")
+	@XmlElement(name = "flight")
 	public void setFlight(List<Flight> flight) {
 		this.flight = flight;
 	}
@@ -33,12 +46,13 @@ public class Ticket {
 		return priceUsd;
 	}
 
+	@XmlElement(name = "priceUsd")
 	public void setPriceUsd(int priceUsd) {
 		this.priceUsd = priceUsd;
 	}
 
 	@Override
 	public String toString() {
-		return "Ticket [owner=" + owner + ", flight=" + flight + ", priceUsd=" + priceUsd + "]";
+		return "Ticket [passenger=" + passenger + ", flight=" + flight + ", priceUsd=" + priceUsd + "]";
 	}
 }
