@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.solvd.airport.connection.ConnectionPool;
-import com.solvd.airport.connection.abstractJDBCDao;
+import com.solvd.airport.connection.AbstractJDBCDao;
 import com.solvd.airport.entities.Route;
 import com.solvd.airport.interfaces.IRouteDao;
 
-public class RouteDao extends abstractJDBCDao implements IRouteDao {
+public class RouteDao extends AbstractJDBCDao implements IRouteDao {
 	private ConnectionPool cp = getCp();
 
 	public Route getById(long id) throws SQLException {

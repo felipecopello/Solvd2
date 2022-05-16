@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.solvd.airport.connection.ConnectionPool;
-import com.solvd.airport.connection.abstractJDBCDao;
+import com.solvd.airport.connection.AbstractJDBCDao;
 import com.solvd.airport.entities.AirlineInAirport;
 import com.solvd.airport.entities.Airport;
 import com.solvd.airport.interfaces.IAirlineInAirportDao;
 
-public class AirlineInAirportDao extends abstractJDBCDao implements IAirlineInAirportDao {
+public class AirlineInAirportDao extends AbstractJDBCDao implements IAirlineInAirportDao {
 	private ConnectionPool cp = getCp();
 
 	public AirlineInAirport getById(long id) throws SQLException {

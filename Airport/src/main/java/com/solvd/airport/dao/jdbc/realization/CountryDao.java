@@ -11,11 +11,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.solvd.airport.connection.ConnectionPool;
-import com.solvd.airport.connection.abstractJDBCDao;
+import com.solvd.airport.connection.AbstractJDBCDao;
 import com.solvd.airport.entities.Country;
 import com.solvd.airport.interfaces.ICountryDao;
 
-public class CountryDao extends abstractJDBCDao implements ICountryDao {
+public class CountryDao extends AbstractJDBCDao implements ICountryDao {
 	private static final Logger LOGGER = LogManager.getLogger(CountryDao.class);
 	private ConnectionPool cp = getCp();
 

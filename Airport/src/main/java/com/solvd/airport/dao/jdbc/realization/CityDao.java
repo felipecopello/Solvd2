@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.solvd.airport.connection.ConnectionPool;
-import com.solvd.airport.connection.abstractJDBCDao;
+import com.solvd.airport.connection.AbstractJDBCDao;
 import com.solvd.airport.entities.City;
 import com.solvd.airport.interfaces.ICityDao;
 
-public class CityDao extends abstractJDBCDao implements ICityDao {
+public class CityDao extends AbstractJDBCDao implements ICityDao {
 	private ConnectionPool cp = getCp();
 
 	public City getById(long id) throws SQLException {

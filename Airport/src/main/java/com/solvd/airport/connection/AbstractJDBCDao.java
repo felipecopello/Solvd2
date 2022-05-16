@@ -2,7 +2,7 @@ package com.solvd.airport.connection;
 
 import java.sql.SQLException;
 
-public abstract class abstractJDBCDao {
+public abstract class AbstractJDBCDao {
 
 	private static ConnectionPool cp;
 

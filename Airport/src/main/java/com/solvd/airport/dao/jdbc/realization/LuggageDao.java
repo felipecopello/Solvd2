@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.solvd.airport.connection.ConnectionPool;
-import com.solvd.airport.connection.abstractJDBCDao;
+import com.solvd.airport.connection.AbstractJDBCDao;
 import com.solvd.airport.entities.Luggage;
 import com.solvd.airport.interfaces.ILuggageDao;
 
-public class LuggageDao extends abstractJDBCDao implements ILuggageDao {
+public class LuggageDao extends AbstractJDBCDao implements ILuggageDao {
 	private ConnectionPool cp = getCp();
 
 	public Luggage getById(long id) throws SQLException {

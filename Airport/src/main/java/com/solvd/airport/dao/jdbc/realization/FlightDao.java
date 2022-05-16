@@ -11,11 +11,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.solvd.airport.connection.ConnectionPool;
-import com.solvd.airport.connection.abstractJDBCDao;
+import com.solvd.airport.connection.AbstractJDBCDao;
 import com.solvd.airport.entities.Flight;
 import com.solvd.airport.interfaces.IFlightDao;
 
-public class FlightDao extends abstractJDBCDao implements IFlightDao {
+public class FlightDao extends AbstractJDBCDao implements IFlightDao {
 	private static final Logger LOGGER = LogManager.getLogger(FlightDao.class);
 	private ConnectionPool cp = getCp();
 

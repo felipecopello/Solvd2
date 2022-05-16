@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.solvd.airport.connection.ConnectionPool;
-import com.solvd.airport.connection.abstractJDBCDao;
+import com.solvd.airport.connection.AbstractJDBCDao;
 import com.solvd.airport.entities.Airline;
 import com.solvd.airport.entities.Airport;
 import com.solvd.airport.entities.City;
@@ -24,7 +24,7 @@ import com.solvd.airport.service.PilotService;
 import com.solvd.airport.service.PlaneService;
 import com.solvd.airport.service.RouteService;
 
-public class DaoRunner extends abstractJDBCDao {
+public class DaoRunner extends AbstractJDBCDao {
 	private static final Logger LOGGER = LogManager.getLogger(DaoRunner.class);
 	private static ConnectionPool cp = getCp();
 
