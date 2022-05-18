@@ -12,7 +12,7 @@ public class DomRunner {
 		String path = "src/main/resources/data.xml";
 
 		try {
-			DomTask.enteringDocument("ticket");
+			DomTask.enteringDocument();
 			DomTask.printDom(path);
 			DomTask.creatingDomDocument();
 		} catch (Exception e) {

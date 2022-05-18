@@ -23,7 +23,7 @@ public class DomTask {
 	private static final Logger LOGGER = LogManager.getLogger(DomTask.class);
 	private static DocumentBuilder builder;
 
-	public static void enteringDocument(String classToAccess) {
+	public static void enteringDocument() {
 		try {
 			builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document doc = builder.parse(new File("src/main/resources/data.xml"));
@@ -46,7 +46,7 @@ public class DomTask {
 			}
 		} else {
 			if (!element.getTextContent().isEmpty()) {
-				System.out.printf("%1$s: %2$s ", element.getParentNode().getNodeName(), element.getTextContent());
+				System.out.printf("%s: %s ", element.getParentNode().getNodeName(), element.getTextContent());
 			}
 		}
 
