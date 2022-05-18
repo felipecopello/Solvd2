@@ -11,7 +11,7 @@ import com.solvd.airport.entities.Country;
 import com.solvd.airport.entities.Passenger;
 import com.solvd.airport.entities.Plane;
 import com.solvd.airport.entities.Ticket;
-import com.solvd.airport.jaxb.jaxbTest;
+import com.solvd.airport.jaxb.JaxbUtil;
 
 import jakarta.xml.bind.JAXBException;
 
@@ -35,17 +35,18 @@ public class JaxbRunner {
 		try {
 			// jaxbTest.marshallPlane(plane);
 			// jaxbTest.marshalCountry(argentina);
-			jaxbTest.marshalCity(buenosAires);
+			JaxbUtil.marshalCity(buenosAires);
 		} catch (JAXBException | IOException e) {
 			e.printStackTrace();
 		}
 
 		try {
-			Plane plane2 = jaxbTest.unmarshallPlane("src/main/resources/plane.xml");
-			Passenger passenger1 = jaxbTest.unmarshallPassenger("src/main/resources/passenger.xml");
-			Ticket ticket = jaxbTest.unmarshallTicket("src/main/resources/data.xml");
-			jaxbTest.marshalPassenger(passenger1);
-			jaxbTest.marshalAirport(airport);
+			Plane plane2 = JaxbUtil.unmarshallPlane("src/main/resources/plane.xml");
+			Passenger passenger1 = JaxbUtil.unmarshallPassenger("src/main/resources/passenger.xml");
+			Ticket ticket = JaxbUtil.unmarshallTicket("src/main/resources/data.xml");
+			JaxbUtil.marshalPassenger(passenger1);
+			JaxbUtil.marshalAirport(airport);
+			LOGGER.info(airport);
 			LOGGER.info(plane2);
 			LOGGER.info(passenger1);
 			LOGGER.info(ticket);

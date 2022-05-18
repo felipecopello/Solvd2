@@ -6,20 +6,18 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "flight")
-@XmlType(propOrder = { "flightId", "plane", "pilot", "route", "priceUsd" })
+@XmlType(propOrder = { "flightId", "plane", "pilot", "route" })
 public class Flight {
 	private long flightId;
 	private Plane plane;
 	private Pilot pilot;
 	private Route route;
-	private int priceUsd;
 
 	public Flight() {
 	}
 
 	public Flight(long flightId, int priceUsd) {
 		this.flightId = flightId;
-		this.priceUsd = priceUsd;
 	}
 
 	public Plane getPlane() {
@@ -49,19 +47,9 @@ public class Flight {
 		this.route = route;
 	}
 
-	public int getPriceUsd() {
-		return priceUsd;
-	}
-
-	@XmlElement(name = "priceUsd")
-	public void setPriceUsd(int priceUsd) {
-		this.priceUsd = priceUsd;
-	}
-
 	@Override
 	public String toString() {
-		return "Flight [flightId=" + flightId + ", plane=" + plane + ", pilot=" + pilot + ", route=" + route
-				+ ", priceUsd=" + priceUsd + "]";
+		return "Flight [flightId=" + flightId + ", plane=" + plane + ", pilot=" + pilot + ", route=" + route + "]";
 	}
 
 	public long getFlightId() {

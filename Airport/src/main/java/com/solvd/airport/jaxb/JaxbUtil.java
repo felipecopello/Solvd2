@@ -19,7 +19,7 @@ import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 
-public class jaxbTest {
+public class JaxbUtil {
 	private static final Logger LOGGER = LogManager.getLogger(DaoRunner.class);
 
 	public static void marshallPlane(Plane plane) throws JAXBException, IOException {
@@ -47,7 +47,7 @@ public class jaxbTest {
 		Marshaller mar = context.createMarshaller();
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		mar.marshal(passenger, new File("src/main/resources/objectTest.xml"));
-		LOGGER.info("The object " + passenger.toString() + " was succesfully marshalled");
+		LOGGER.info("The object " + passenger + " was succesfully marshalled");
 	}
 
 	public static void marshalCountry(Country country) throws JAXBException, IOException {
@@ -56,7 +56,7 @@ public class jaxbTest {
 		Marshaller mar = context.createMarshaller();
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		mar.marshal(country, new File("src/main/resources/objectTest.xml"));
-		LOGGER.info("The object " + country.toString() + " was succesfully marshalled");
+		LOGGER.info("The object " + country + " was succesfully marshalled");
 	}
 
 	public static void marshalCity(City city) throws JAXBException, IOException {
@@ -65,7 +65,7 @@ public class jaxbTest {
 		Marshaller mar = context.createMarshaller();
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		mar.marshal(city, new File("src/main/resources/objectTest.xml"));
-		LOGGER.info("The object " + city.toString() + " was succesfully marshalled");
+		LOGGER.info("The object " + city + " was succesfully marshalled");
 	}
 
 	public static void marshalTicket(Ticket ticket) throws JAXBException, IOException {
@@ -74,7 +74,7 @@ public class jaxbTest {
 		Marshaller mar = context.createMarshaller();
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		mar.marshal(ticket, new File("src/main/resources/objectTest.xml"));
-		LOGGER.info("The object " + ticket.toString() + " was succesfully marshalled");
+		LOGGER.info("The object " + ticket + " was succesfully marshalled");
 	}
 
 	public static Ticket unmarshallTicket(String path) throws JAXBException, IOException {
@@ -88,7 +88,7 @@ public class jaxbTest {
 		Marshaller mar = context.createMarshaller();
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		mar.marshal(airport, new File("src/main/resources/objectTest.xml"));
-		LOGGER.info("The object " + airport.toString() + " was succesfully marshalled");
+		LOGGER.info("The object " + airport + " was succesfully marshalled");
 	}
 
 }

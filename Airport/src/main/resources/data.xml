@@ -1,4 +1,5 @@
-<?xml-model href="data.xsd"?>
+
+<?xml-model href="data1.xsd"?>
 <ticket>
 	<passenger passengerId="100">
 		<name>Pedro Perez</name>
@@ -28,31 +29,27 @@
 				</employer>
 			</pilot>
 			<route routeId="901">
-				<departureAirport>
-					<airport airportId="1001">
+				<departureAirport airportId="1001">
 						<name>Aeropuerto Internacional de Ezeiza</name>
 						<planesCapacity>183</planesCapacity>
-					<city cityId="1101">
-						<name>Buenos Aires</name>
-						<country countryId="1202">
-							<name>Argentina</name>
-						</country>
-						<population>50000000</population>
-					</city>
-					</airport>
+						<city cityId="1101">
+							<name>Buenos Aires</name>
+							<country countryId="1202">
+								<name>Argentina</name>
+							</country>
+							<population>50000000</population>
+						</city>
 				</departureAirport>
-				<arrivalAirport>
-					<airport airportId="1002">
+				<arrivalAirport airportId="1002">
 						<name>Heathrow Airport</name>
 						<planesCapacity>398</planesCapacity>
-					<city cityId="1002">
-						<name>London</name>
-						<country countryId="1201">
-							<name>England</name>
-						</country >
-						<population>85000000</population>
-					</city>
-					</airport>
+						<city cityId="1002">
+							<name>London</name>
+							<country countryId="1201">
+								<name>England</name>
+							</country >
+							<population>85000000</population>
+						</city>
 				</arrivalAirport>
 			</route>
 		</flight>

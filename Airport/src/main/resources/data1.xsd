@@ -64,65 +64,53 @@
                           <xs:element name="departureAirport">
                             <xs:complexType>
                               <xs:sequence>
-                                <xs:element name="airport">
+                                <xs:element name="name" type="xs:string" />
+                                <xs:element name="planesCapacity" type="xs:string" />
+                                <xs:element name="city">
                                   <xs:complexType>
                                     <xs:sequence>
                                       <xs:element name="name" type="xs:string" />
-                                      <xs:element name="planesCapacity" type="xs:string" />
-                                      <xs:element name="city">
+                                      <xs:element name="country">
                                         <xs:complexType>
                                           <xs:sequence>
                                             <xs:element name="name" type="xs:string" />
-                                            <xs:element name="country">
-                                              <xs:complexType>
-                                                <xs:sequence>
-                                                  <xs:element name="name" type="xs:string" />
-                                                </xs:sequence>
-                                                <xs:attribute name="countryId" type="xs:integer" use="required" />
-                                              </xs:complexType>
-                                            </xs:element>
-                                            <xs:element name="population" type="xs:string" />
                                           </xs:sequence>
-                                          <xs:attribute name="cityId" type="xs:integer" use="required" />
+                                          <xs:attribute name="countryId" type="xs:integer" use="required" />
                                         </xs:complexType>
                                       </xs:element>
+                                      <xs:element name="population" type="xs:string" />
                                     </xs:sequence>
-                                    <xs:attribute name="airportId" type="xs:integer" use="required" />
+                                    <xs:attribute name="cityId" type="xs:integer" use="required" />
                                   </xs:complexType>
                                 </xs:element>
                               </xs:sequence>
+                              <xs:attribute name="airportId" type="xs:integer" use="required" />
                             </xs:complexType>
                           </xs:element>
                           <xs:element name="arrivalAirport">
                             <xs:complexType>
                               <xs:sequence>
-                                <xs:element name="airport">
+                                <xs:element name="name" type="xs:string" />
+                                <xs:element name="planesCapacity" type="xs:string" />
+                                <xs:element name="city">
                                   <xs:complexType>
                                     <xs:sequence>
                                       <xs:element name="name" type="xs:string" />
-                                      <xs:element name="planesCapacity" type="xs:string" />
-                                      <xs:element name="city">
+                                      <xs:element name="country">
                                         <xs:complexType>
                                           <xs:sequence>
                                             <xs:element name="name" type="xs:string" />
-                                            <xs:element name="country">
-                                              <xs:complexType>
-                                                <xs:sequence>
-                                                  <xs:element name="name" type="xs:string" />
-                                                </xs:sequence>
-                                                <xs:attribute name="countryId" type="xs:integer" use="required" />
-                                              </xs:complexType>
-                                            </xs:element>
-                                            <xs:element name="population" type="xs:string" />
                                           </xs:sequence>
-                                          <xs:attribute name="cityId" type="xs:integer" use="required" />
+                                          <xs:attribute name="countryId" type="xs:integer" use="required" />
                                         </xs:complexType>
                                       </xs:element>
+                                      <xs:element name="population" type="xs:string" />
                                     </xs:sequence>
-                                    <xs:attribute name="airportId" type="xs:integer" use="required" />
+                                    <xs:attribute name="cityId" type="xs:integer" use="required" />
                                   </xs:complexType>
                                 </xs:element>
                               </xs:sequence>
+                              <xs:attribute name="airportId" type="xs:integer" use="required" />
                             </xs:complexType>
                           </xs:element>
                         </xs:sequence>

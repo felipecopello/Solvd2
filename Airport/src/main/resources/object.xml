@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<airport airportId="1">
+    <name>Montevideo Airport</name>
+    <planesCapacity>0</planesCapacity>
+    <city cityId="701">
+        <name>Buenos Aires</name>
+        <country countryId="601">
+            <name>Argentina</name>
+        </country>
+        <population>4500000</population>
+    </city>
+</airport>

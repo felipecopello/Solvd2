@@ -31,23 +31,23 @@ public class DomTask {
 			Element root = doc.getDocumentElement();
 			;
 
-			recursionDOM(root);
+			recursionDom(root);
 
 		} catch (ParserConfigurationException | SAXException | IOException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getStackTrace());
 		}
 	}
 
-	private static void recursionDOM(Node element) {
-
-		System.out.println(element.getNodeName());
+	private static void recursionDom(Node element) {
 
 		if (element.hasChildNodes()) {
 			for (Node child = element.getFirstChild(); child != null; child = child.getNextSibling()) {
-				recursionDOM(child);
+				recursionDom(child);
 			}
 		} else {
-			System.out.println(element.getTextContent());
+			if (!element.getTextContent().isEmpty()) {
+				System.out.printf("%1$s: %2$s ", element.getParentNode().getNodeName(), element.getTextContent());
+			}
 		}
 
 	}
@@ -71,7 +71,7 @@ public class DomTask {
 			firstPassenger.setAttribute(attName, attValue);
 
 		} catch (SAXException | IOException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getStackTrace());
 		}
 	}
 
@@ -104,7 +104,7 @@ public class DomTask {
 			transformer.transform(dom, result);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.info(e.getStackTrace());
 		}
 	}
 }
