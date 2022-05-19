@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.solvd.airport.DaoRunner;
 import com.solvd.airport.entities.Airport;
 import com.solvd.airport.entities.City;
 import com.solvd.airport.entities.Country;
@@ -20,7 +19,7 @@ import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 
 public class JaxbUtil {
-	private static final Logger LOGGER = LogManager.getLogger(DaoRunner.class);
+	private static final Logger LOGGER = LogManager.getLogger(JaxbUtil.class);
 
 	public static void marshallPlane(Plane plane) throws JAXBException, IOException {
 

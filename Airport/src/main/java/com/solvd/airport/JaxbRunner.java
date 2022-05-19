@@ -33,8 +33,8 @@ public class JaxbRunner {
 		airport.setName("Montevideo Airport");
 
 		try {
-			// jaxbTest.marshallPlane(plane);
-			// jaxbTest.marshalCountry(argentina);
+			JaxbUtil.marshallPlane(plane);
+			JaxbUtil.marshalCountry(argentina);
 			JaxbUtil.marshalCity(buenosAires);
 		} catch (JAXBException | IOException e) {
 			e.printStackTrace();

@@ -1,0 +1,9 @@
+{
+"passengerId":"101",
+"name":"Paco Gomez",
+"age":"55",
+"luggages": [{
+	"weight":22.3},
+	{"weight":11.5}],
+"email": "pacogom@gmail.com" 
+}

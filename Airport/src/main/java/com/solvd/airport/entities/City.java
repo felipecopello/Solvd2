@@ -1,5 +1,7 @@
 package com.solvd.airport.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
@@ -9,9 +11,13 @@ import jakarta.xml.bind.annotation.XmlType;
 
 @XmlType(propOrder = { "cityId", "name", "country", "population" })
 public class City {
+	@JsonProperty
 	private long cityId;
+	@JsonProperty
 	private String name;
+	@JsonProperty
 	private Country country;
+	@JsonProperty
 	private int population;
 
 	public City() {

@@ -2,10 +2,16 @@ package com.solvd.airport.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class AirlineInAirport {
+	@JsonProperty
 	private int airlineId;
+	@JsonProperty
 	private int airportId;
+	@JsonProperty
 	private Airline airline;
+	@JsonProperty
 	private List<Airport> airports;
 
 	public AirlineInAirport(int airlineId, int airportId) {
