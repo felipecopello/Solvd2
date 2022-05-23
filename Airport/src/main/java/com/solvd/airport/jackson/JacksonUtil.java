@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.solvd.airport.entities.Airport;
 import com.solvd.airport.entities.Passenger;
 import com.solvd.airport.entities.Plane;
@@ -16,11 +17,11 @@ import com.solvd.airport.entities.Ticket;
 
 public class JacksonUtil {
 	private static final Logger LOGGER = LogManager.getLogger(JacksonUtil.class);
-	private static ObjectMapper objectMapper = new ObjectMapper();
+	private static ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
 	public static void writePlane(Plane plane) {
 
-		File file = new File("src/main/resources/plane.json");
+		File file = new File("src/main/resources/json/plane.json");
 
 		try {
 			objectMapper.writeValue(file, plane);
@@ -30,8 +31,8 @@ public class JacksonUtil {
 		}
 	}
 
-	public static void mapPassenger() {
-		File file = new File("src/main/resources/passenger.json");
+	public static void mapPassenger(String path) {
+		File file = new File(path);
 
 		try {
 			Passenger passengerPaco = objectMapper.readValue(file, Passenger.class);
@@ -43,7 +44,7 @@ public class JacksonUtil {
 	}
 
 	public static void writeTicket(Ticket ticket) {
-		File file = new File("src/main/resources/ticket.json");
+		File file = new File("src/main/resources/json/ticket.json");
 
 		try {
 			objectMapper.writeValue(file, ticket);
@@ -65,9 +66,9 @@ public class JacksonUtil {
 		}
 	}
 
-	public static void mapAirports() {
+	public static void mapAirports(String path) {
 		ObjectMapper om = new ObjectMapper();
-		File file = new File("src/main/resources/airports.json");
+		File file = new File(path);
 
 		try {
 
@@ -77,7 +78,6 @@ public class JacksonUtil {
 				LOGGER.info(airport);
 			});
 
-			System.out.println(airports.size());
 		} catch (Exception e) {
 			LOGGER.info(e.getStackTrace());
 		}

@@ -1,3 +1,0 @@
-[{"airportId": 998, "name":"Misk International Airport", "planesCapacity": 521, "city":{"cityId": 236,"name":"Minsk","country":{"countryId":5556, "name":"Belarus"}, "population": 40000000}},
-{"airportId": 999, "name":"Aeropuerto Internacional de Ezeiza", "planesCapacity": 251, "city":{"cityId": 235,"name":"Buenos Aires","country":{"countryId":5555, "name":"Argentina"}, "population": 50000000}},
-{"airportId": 997, "name":"Aeropuerto Internacional el Prat", "planesCapacity": 686, "city":{"cityId": 234,"name":"Barcelona","country":{"countryId":5557, "name":"España"}, "population": 60000000}}]

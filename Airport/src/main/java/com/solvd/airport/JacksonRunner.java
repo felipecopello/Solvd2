@@ -23,16 +23,16 @@ public class JacksonRunner {
 		plane.setCapacity(20);
 
 		JacksonUtil.writePlane(plane);
-		JacksonUtil.mapPassenger();
+		JacksonUtil.mapPassenger("src/main/resources/json/passenger.json");
 
 		try {
-			Ticket ticket = JaxbUtil.unmarshallTicket("src/main/resources/data.xml");
+			Ticket ticket = JaxbUtil.unmarshallTicket("src/main/resources/json/data.xml");
 			JacksonUtil.writeTicket(ticket);
 		} catch (JAXBException | IOException e) {
 			LOGGER.info(e.getCause());
 		}
 
-		JacksonUtil.mapAirport("src/main/resources/airport.json");
-		JacksonUtil.mapAirports();
+		JacksonUtil.mapAirport("src/main/resources/json/airport.json");
+		JacksonUtil.mapAirports("src/main/resources/json/airports.json");
 	}
 }

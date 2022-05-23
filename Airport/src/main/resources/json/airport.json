@@ -1,0 +1,14 @@
+{
+   "airportId":999,
+   "name":"Aeropuerto Internacional de Ezeiza",
+   "planesCapacity":251,
+   "city":{
+      "cityId":235,
+      "name":"Buenos Aires",
+      "country":{
+         "countryId":5555,
+         "name":"Argentina"
+      },
+      "population":50000000
+   }
+}

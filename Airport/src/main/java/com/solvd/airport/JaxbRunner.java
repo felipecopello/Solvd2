@@ -41,9 +41,9 @@ public class JaxbRunner {
 		}
 
 		try {
-			Plane plane2 = JaxbUtil.unmarshallPlane("src/main/resources/plane.xml");
-			Passenger passenger1 = JaxbUtil.unmarshallPassenger("src/main/resources/passenger.xml");
-			Ticket ticket = JaxbUtil.unmarshallTicket("src/main/resources/data.xml");
+			Plane plane2 = JaxbUtil.unmarshallPlane("src/main/resources/xml/plane.xml");
+			Passenger passenger1 = JaxbUtil.unmarshallPassenger("src/main/resources/xml/passenger.xml");
+			Ticket ticket = JaxbUtil.unmarshallTicket("src/main/resources/xml/data.xml");
 			JaxbUtil.marshalPassenger(passenger1);
 			JaxbUtil.marshalAirport(airport);
 			LOGGER.info(airport);

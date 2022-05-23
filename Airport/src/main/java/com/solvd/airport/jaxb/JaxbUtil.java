@@ -26,7 +26,7 @@ public class JaxbUtil {
 		JAXBContext context = JAXBContext.newInstance(Plane.class);
 		Marshaller mar = context.createMarshaller();
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		mar.marshal(plane, new File("src/main/resources/objectTest.xml"));
+		mar.marshal(plane, new File("src/main/resources/xml/objectTest.xml"));
 		LOGGER.info("The plane " + plane.getPlaneId() + " was succesfully marshalled");
 	}
 
@@ -45,7 +45,7 @@ public class JaxbUtil {
 		JAXBContext context = JAXBContext.newInstance(Passenger.class);
 		Marshaller mar = context.createMarshaller();
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		mar.marshal(passenger, new File("src/main/resources/objectTest.xml"));
+		mar.marshal(passenger, new File("src/main/resources/xml/objectTest.xml"));
 		LOGGER.info("The object " + passenger + " was succesfully marshalled");
 	}
 
@@ -54,7 +54,7 @@ public class JaxbUtil {
 		JAXBContext context = JAXBContext.newInstance(Country.class);
 		Marshaller mar = context.createMarshaller();
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		mar.marshal(country, new File("src/main/resources/objectTest.xml"));
+		mar.marshal(country, new File("src/main/resources/xml/objectTest.xml"));
 		LOGGER.info("The object " + country + " was succesfully marshalled");
 	}
 
@@ -63,7 +63,7 @@ public class JaxbUtil {
 		JAXBContext context = JAXBContext.newInstance(City.class);
 		Marshaller mar = context.createMarshaller();
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		mar.marshal(city, new File("src/main/resources/objectTest.xml"));
+		mar.marshal(city, new File("src/main/resources/xml/objectTest.xml"));
 		LOGGER.info("The object " + city + " was succesfully marshalled");
 	}
 
@@ -72,7 +72,7 @@ public class JaxbUtil {
 		JAXBContext context = JAXBContext.newInstance(Ticket.class);
 		Marshaller mar = context.createMarshaller();
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		mar.marshal(ticket, new File("src/main/resources/objectTest.xml"));
+		mar.marshal(ticket, new File("src/main/resources/xml/objectTest.xml"));
 		LOGGER.info("The object " + ticket + " was succesfully marshalled");
 	}
 
@@ -86,7 +86,7 @@ public class JaxbUtil {
 		JAXBContext context = JAXBContext.newInstance(Airport.class);
 		Marshaller mar = context.createMarshaller();
 		mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		mar.marshal(airport, new File("src/main/resources/objectTest.xml"));
+		mar.marshal(airport, new File("src/main/resources/xml/objectTest.xml"));
 		LOGGER.info("The object " + airport + " was succesfully marshalled");
 	}
 
