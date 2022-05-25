@@ -10,13 +10,13 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.solvd.airport.connection.ConnectionPool;
 import com.solvd.airport.connection.AbstractJDBCDao;
+import com.solvd.airport.connection.ConnectionPool;
 import com.solvd.airport.entities.Plane;
 import com.solvd.airport.interfaces.IPlaneDao;
 
 public class PlaneDao extends AbstractJDBCDao implements IPlaneDao {
-	private static final Logger LOGGER = LogManager.getLogger(CountryDao.class);
+	private static final Logger LOGGER = LogManager.getLogger(PlaneDao.class);
 	private ConnectionPool cp = getCp();
 
 	public Plane getById(long id) throws SQLException {

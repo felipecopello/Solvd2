@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<mapper namespace="com.solvd.airport.interfaces.IPlaneDao">
-	<resultMap id= "PlaneResultMap" type="com.solvd.airport.entities.Plane" autoMapping = "false">
-		<result column= "ID" property="planeId"/>
-		<result column= "model" property="model"/>
-		<result column= "capacity" property="capacity"/>
-	</resultMap>
-	<select id="getById" resultMap="PlaneResultMap">
-		Select * from Planes join Flights on Flights.plane_ID=Planes.ID where Planes.ID =#{id}
-	</select>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.PlaneMapper">
+   <resultMap id="PlaneResultMap" type="com.solvd.airport.entities.Plane" autoMapping="false">
+      <result column="ID" property="planeId" />
+      <result column="model" property="model" />
+      <result column="capacity" property="capacity" />
+   </resultMap>
+   <select id="getById" parameterType="Long" resultMap="PlaneResultMap">Select * from Planes where ID =#{id}</select>
 </mapper>
