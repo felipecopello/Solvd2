@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.PlaneMapper">
+<mapper namespace="com.solvd.airport.interfaces.IPlaneDao">
    <resultMap id="PlaneResultMap" type="com.solvd.airport.entities.Plane" autoMapping="false">
       <result column="ID" property="planeId" />
       <result column="model" property="model" />
       <result column="capacity" property="capacity" />
    </resultMap>
-   <select id="getById" parameterType="Long" resultMap="PlaneResultMap">Select * from Planes where ID =#{id}</select>
+   <select id="getById" parameterType="Long" resultMap="PlaneResultMap">
+		Select * from Planes where ID =#{id}
+   </select>
+   <select id="getAll" resultMap="PlaneResultMap">
+		Select * from Planes
+   </select>
+   <delete id="delete">
+		Delete from Author where ID = #{id}
+   </delete>
+   <insert id="save">
+		Insert into Planes (model,capacity)
+  		Values (#{model},#{capacity})
+   </insert>
+   <update id="update">
+		Update Planes set
+    	model = #{model},
+    	capacity = #{capacity}
+ 		where id = #{id}
+   </update>
 </mapper>

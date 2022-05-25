@@ -106,4 +106,16 @@ public class PlaneDao extends AbstractJDBCDao implements IPlaneDao {
 
 	}
 
+	@Override
+	public void save(String model, int capacity) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void update(String model, int capacity, long id) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
 }

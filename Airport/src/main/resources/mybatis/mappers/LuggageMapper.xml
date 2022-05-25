@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.airport.interfaces.ILuggageDao">
+   <resultMap id="LuggageResultMap" type="com.solvd.airport.entities.Luggage" autoMapping="false">
+      <result column="weight_in_kg" property="weight" />
+   </resultMap>
+
+   <select id="getById" parameterType="Long" resultMap="LuggageResultMap">
+	  Select * from Luggages where ID =#{id}
+   </select>
+
+   <select id="getByPassengerId" parameterType="Long" resultMap="LuggageResultMap">
+	  Select * from Luggages join Passengers on Passengers.ID = Luggages.owner_ID where  Passengers.ID=#{id}
+   </select>
+
+   <select id="getAll" resultMap="LuggageResultMap">
+
+   </select>
+   <delete id="delete">
+
+   </delete>
+   <insert id="save">
+
+   </insert>
+   <update id="update">
+
+   </update>
+</mapper>
