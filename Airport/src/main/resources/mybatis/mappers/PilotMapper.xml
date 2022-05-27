@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.airport.interfaces.IPilotDao">
+   <resultMap id="PilotResultMap" type="com.solvd.airport.entities.Pilot" autoMapping="false">
+	  <result column="ID" property="pilotId" />
+      <result column="pilot_name" property="name" />
+	  <result column="age" property="age" />
+	  <association property="employer" column="employed_by_airline" javaType="com.solvd.airport.entities.Airline" select="com.solvd.airport.interfaces.IAirlineDao.getById"/>
+   </resultMap>
+
+   <select id="getById" parameterType="Long" resultMap="PilotResultMap">
+	  Select * from Pilots where ID =#{id}
+   </select>
+
+   <select id="getAll" resultMap="PilotResultMap">
+	  Select * from Pilots
+   </select>
+   <delete id="delete">
+
+   </delete>
+   <insert id="save">
+
+   </insert>
+   <update id="update">
+
+   </update>
+</mapper>

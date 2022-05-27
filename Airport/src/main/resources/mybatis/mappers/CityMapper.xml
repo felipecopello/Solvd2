@@ -5,28 +5,27 @@
       <result column="ID" property="cityId" />
       <result column="city_name" property="name" />
 	  <result column="population" property="population" />
-	  <association property="country" column="country_ID" javaType="com.solvd.airport.entities.Country" select="selectCountry"/>
+	  <association property="country" column="country_ID" javaType="com.solvd.airport.entities.Country" select="com.solvd.airport.interfaces.ICountryDao.getById"/>
    </resultMap>
-   <resultMap id="CountryResultMap" type="com.solvd.airport.entities.Country" autoMapping="false">
-      <result column="ID" property="countryId" />
-      <result column="country_name" property="name" />
-   </resultMap>
+
    <select id="getById" parameterType="Long" resultMap="CityResultMap">
 	  Select * from Cities where ID =#{id}
    </select>
-   <select id="selectCountry" parameterType="Long" resultMap="CountryResultMap">
-	  SELECT * FROM Countries WHERE ID = #{id}
+
+   <select id="getByAirportId" parameterType="Long" resultMap="CityResultMap">
+	  Select * from Cities join Airports on Airports.city_ID = Cities.ID where Airports.ID=#{id}
    </select>
+
    <select id="getAll" resultMap="CityResultMap">
-
+	  Select * from Cities
    </select>
+
    <delete id="delete">
-
    </delete>
+
    <insert id="save">
-
    </insert>
-   <update id="update">
 
+   <update id="update">
    </update>
 </mapper>

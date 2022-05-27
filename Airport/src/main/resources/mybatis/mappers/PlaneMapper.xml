@@ -13,7 +13,7 @@
 		Select * from Planes
    </select>
    <delete id="delete">
-		Delete from Author where ID = #{id}
+		Delete from Planes where ID = #{id}
    </delete>
    <insert id="save">
 		Insert into Planes (model,capacity)

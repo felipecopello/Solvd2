@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.airport.interfaces.IRouteDao">
+   <resultMap id="RouteResultMap" type="com.solvd.airport.entities.Route" autoMapping="false">
+	  <result column="ID" property="routeId" />
+	  <association property="departureAirport" column="departure_airport_ID" javaType="com.solvd.airport.entities.Airport" select="com.solvd.airport.interfaces.IAirportDao.getById"/>
+	  <association property="arrivalAirport" column="arrival_airport_ID" javaType="com.solvd.airport.entities.Airport" select="com.solvd.airport.interfaces.IAirportDao.getById"/>
+   </resultMap>
+
+   <select id="getById" parameterType="Long" resultMap="RouteResultMap">
+	  Select * from Routes where ID =#{id}
+   </select>
+
+   <select id="getAll" resultMap="RouteResultMap">
+	  Select * from Routes
+   </select>
+   <delete id="delete">
+
+   </delete>
+   <insert id="save">
+
+   </insert>
+   <update id="update">
+
+   </update>
+</mapper>
