@@ -19,6 +19,7 @@ import com.solvd.airport.entities.Plane;
 import com.solvd.airport.interfaces.IEntityDao;
 
 public class DaoFactory extends AbstractFactory {
+
 	public static IEntityDao<?> getDao(String dao) {
 		dao = dao.toLowerCase();
 		switch (dao) {

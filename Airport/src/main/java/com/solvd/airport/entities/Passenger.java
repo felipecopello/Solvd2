@@ -3,6 +3,7 @@ package com.solvd.airport.entities;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.solvd.airport.interfaces.IListener;
 
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -12,13 +13,22 @@ import jakarta.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "passenger")
 @XmlType(propOrder = { "passengerId", "email", "luggages" })
-public class Passenger extends Person {
+public class Passenger extends Person implements IListener {
 	@JsonProperty
 	private long passengerId;
 	@JsonProperty
 	private String email;
 	@JsonProperty
 	private List<Luggage> luggages;
+	private String flightStatus;
+
+	public String getFlightStatus() {
+		return flightStatus;
+	}
+
+	public void setFlightStatus(String flightStatus) {
+		this.flightStatus = flightStatus;
+	}
 
 	public Passenger() {
 	};
@@ -68,6 +78,11 @@ public class Passenger extends Person {
 	@XmlAttribute
 	public void setPassengerId(long id) {
 		this.passengerId = id;
+	}
+
+	@Override
+	public void updateFlightStatus(Object o) {
+		this.setFlightStatus((String) o);
 	}
 
 }

@@ -1,6 +1,10 @@
 package com.solvd.airport.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.solvd.airport.interfaces.IListener;
 
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -19,11 +23,22 @@ public class Flight {
 	@JsonProperty
 	private Route route;
 
+	private String flightStatus;
+	private List<IListener> listeners = new ArrayList<>();
+
 	public Flight() {
 	}
 
 	public Flight(long flightId, int priceUsd) {
 		this.flightId = flightId;
+	}
+
+	public void addListener(IListener listener) {
+		this.listeners.add(listener);
+	}
+
+	public void removeListener(IListener listener) {
+		this.listeners.remove(listener);
 	}
 
 	public Plane getPlane() {
@@ -65,6 +80,17 @@ public class Flight {
 	@XmlAttribute
 	public void setFlightId(long flightId) {
 		this.flightId = flightId;
+	}
+
+	public String getFlightStatus() {
+		return flightStatus;
+	}
+
+	public void setFlightStatus(String flightStatus) {
+		this.flightStatus = flightStatus;
+		for (IListener listener : this.listeners) {
+			listener.updateFlightStatus(this.flightStatus);
+		}
 	}
 
 }
