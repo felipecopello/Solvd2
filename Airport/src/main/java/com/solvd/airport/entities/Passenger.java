@@ -9,6 +9,7 @@ import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "passenger")
@@ -20,12 +21,14 @@ public class Passenger extends Person implements IListener {
 	private String email;
 	@JsonProperty
 	private List<Luggage> luggages;
+
 	private String flightStatus;
 
 	public String getFlightStatus() {
 		return flightStatus;
 	}
 
+	@XmlTransient
 	public void setFlightStatus(String flightStatus) {
 		this.flightStatus = flightStatus;
 	}

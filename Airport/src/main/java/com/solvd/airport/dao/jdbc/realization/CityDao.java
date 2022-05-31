@@ -7,12 +7,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.solvd.airport.connection.ConnectionPool;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.solvd.airport.connection.AbstractJDBCDao;
+import com.solvd.airport.connection.ConnectionPool;
 import com.solvd.airport.entities.City;
 import com.solvd.airport.interfaces.ICityDao;
 
 public class CityDao extends AbstractJDBCDao implements ICityDao {
+	private static final Logger LOGGER = LogManager.getLogger(CityDao.class);
 	private ConnectionPool cp = getCp();
 
 	public City getById(long id) throws SQLException {
@@ -73,7 +77,7 @@ public class CityDao extends AbstractJDBCDao implements ICityDao {
 			ps.setLong(2, city.getCountry().getCountryId());
 			ps.setInt(3, city.getPopulation());
 			ps.executeUpdate();
-			System.out.println("City: " + city.getName() + " was saved in the database");
+			LOGGER.info("City: " + city.getName() + " was saved in the database");
 		} catch (SQLException e) {
 			throw new SQLException();
 		} finally {

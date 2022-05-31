@@ -29,8 +29,7 @@ public class DaoRunner extends AbstractJDBCDao {
 	private static ConnectionPool cp = getCp();
 
 	// When you run this, you will see in the console some null results because some
-	// fields
-	// are null in the database.
+	// fields are null in the database.
 	// Thats because in previous tasks we had to show crud operations in sql that
 	// changed some data.
 

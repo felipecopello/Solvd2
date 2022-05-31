@@ -6,6 +6,7 @@ import com.solvd.airport.interfaces.IListener;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "pilot")
@@ -15,6 +16,7 @@ public class Pilot extends Person implements IListener {
 	private int pilotId;
 	@JsonProperty
 	private Airline employer;
+	@XmlTransient
 	private String flightStatus;
 
 	public Pilot() {
@@ -52,6 +54,7 @@ public class Pilot extends Person implements IListener {
 		return flightStatus;
 	}
 
+	@XmlTransient
 	public void setFlightStatus(String flightStatus) {
 		this.flightStatus = flightStatus;
 	}

@@ -7,12 +7,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.solvd.airport.connection.ConnectionPool;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.solvd.airport.connection.AbstractJDBCDao;
+import com.solvd.airport.connection.ConnectionPool;
 import com.solvd.airport.entities.Airport;
 import com.solvd.airport.interfaces.IAirportDao;
 
 public class AirportDao extends AbstractJDBCDao implements IAirportDao {
+	private static final Logger LOGGER = LogManager.getLogger(AirportDao.class);
 	private ConnectionPool cp = getCp();
 
 	public Airport getById(long id) throws SQLException {
@@ -89,7 +93,7 @@ public class AirportDao extends AbstractJDBCDao implements IAirportDao {
 			ps.setInt(2, airport.getPlanesCapacity());
 			ps.setLong(3, airport.getCity().getCityId());
 			ps.executeUpdate();
-			System.out.println("Airport: " + airport.getName() + " was saved in the database");
+			LOGGER.info("Airport: " + airport.getName() + " was saved in the database");
 		} catch (SQLException e) {
 			throw new SQLException();
 		} finally {

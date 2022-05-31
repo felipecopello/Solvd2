@@ -9,6 +9,7 @@ import com.solvd.airport.interfaces.IListener;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "flight")
@@ -23,7 +24,9 @@ public class Flight {
 	@JsonProperty
 	private Route route;
 
+	@XmlTransient
 	private String flightStatus;
+	@XmlTransient
 	private List<IListener> listeners = new ArrayList<>();
 
 	public Flight() {
@@ -86,6 +89,7 @@ public class Flight {
 		return flightStatus;
 	}
 
+	@XmlTransient
 	public void setFlightStatus(String flightStatus) {
 		this.flightStatus = flightStatus;
 		for (IListener listener : this.listeners) {
