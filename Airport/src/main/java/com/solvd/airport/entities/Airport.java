@@ -60,7 +60,8 @@ public class Airport {
 
 	@Override
 	public String toString() {
-		return "Airport [name=" + name + ", planesCapacity=" + planesCapacity + ", city=" + city + "]";
+		return "Airport [airportId=" + airportId + ", name=" + name + ", planesCapacity=" + planesCapacity + ", city="
+				+ city + "]";
 	}
 
 	public City getCity() {

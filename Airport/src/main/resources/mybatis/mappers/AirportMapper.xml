@@ -5,7 +5,7 @@
       <result column="ID" property="airportId" />
       <result column="airport_name" property="name" />
  	  <result column="planes_capacity" property="planesCapacity" />
- 	  <association property="city" column="city_ID" javaType="com.solvd.airport.entities.City" select="com.solvd.airport.interfaces.ICityDao.getByAirportId"/>
+ 	  <association property="city" column="city_ID" javaType="com.solvd.airport.entities.City" select="com.solvd.airport.interfaces.ICityDao.getById"/>
    </resultMap>
    <select id="getById" parameterType="Long" resultMap="AirportResultMap">
 	  Select * from Airports where ID =#{id}

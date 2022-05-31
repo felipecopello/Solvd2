@@ -29,6 +29,13 @@ public class Passenger extends Person {
 		this.passengerId = id;
 	}
 
+	public Passenger(String name, int age, long id, String email, List<Luggage> luggages) {
+		super(name, age);
+		this.email = email;
+		this.passengerId = id;
+		this.luggages = luggages;
+	}
+
 	public String getEmail() {
 		return email;
 	}

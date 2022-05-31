@@ -7,11 +7,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.solvd.airport.dao.jdbc.realization.AirlineDao;
-import com.solvd.airport.dao.jdbc.realization.AirportDao;
-import com.solvd.airport.dao.jdbc.realization.FlightDao;
 import com.solvd.airport.dao.jdbc.realization.PilotDao;
-import com.solvd.airport.dao.jdbc.realization.PlaneDao;
 import com.solvd.airport.dao.jdbc.realization.RouteDao;
 import com.solvd.airport.entities.Airline;
 import com.solvd.airport.entities.Flight;
@@ -24,16 +20,17 @@ import com.solvd.airport.interfaces.IFlightDao;
 import com.solvd.airport.interfaces.IPilotDao;
 import com.solvd.airport.interfaces.IPlaneDao;
 import com.solvd.airport.interfaces.IRouteDao;
+import com.solvd.airport.patterns.DaoFactory;
 
 public class FlightService {
 	private static final Logger LOGGER = LogManager.getLogger(AirlineService.class);
-	private IFlightDao flightDao = new FlightDao();
-	private IPlaneDao planeDao = new PlaneDao();
+	private IFlightDao flightDao = (IFlightDao) DaoFactory.getDao("flight");
+	private IPlaneDao planeDao = (IPlaneDao) DaoFactory.getDao("plane");
 	private IPilotDao pilotDao = new PilotDao();
 	private IRouteDao routeDao = new RouteDao();
-	private IAirlineDao airlineDao = new AirlineDao();
+	private IAirlineDao airlineDao = (IAirlineDao) DaoFactory.getDao("airline");
 	private AirportService airportService = new AirportService();
-	private IAirportDao airportDao = new AirportDao();
+	private IAirportDao airportDao = (IAirportDao) DaoFactory.getDao("airport");
 
 	public Flight getFlightById(long id) {
 		Flight flight = new Flight();

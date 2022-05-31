@@ -26,7 +26,7 @@ public class DomTask {
 	public static void enteringDocument() {
 		try {
 			builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			Document doc = builder.parse(new File("src/main/resources/data.xml"));
+			Document doc = builder.parse(new File("src/main/resources/xml/data.xml"));
 			doc.getDocumentElement().normalize();
 			Element root = doc.getDocumentElement();
 			;
@@ -54,7 +54,7 @@ public class DomTask {
 
 	public static void printDom(String path) throws Exception {
 		builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-		Document doc = builder.parse(new File("src/main/resources/data.xml"));
+		Document doc = builder.parse(new File("src/main/resources/xml/data.xml"));
 		doc.getDocumentElement().normalize();
 		DOMSource dom = new DOMSource(doc);
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -64,7 +64,7 @@ public class DomTask {
 	public static void updateDom(String attName, String attValue) throws ParserConfigurationException {
 		try {
 			builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			Document doc = builder.parse(new File("src/main/resources/data.xml"));
+			Document doc = builder.parse(new File("src/main/resources/xml/data.xml"));
 			doc.getDocumentElement().normalize();
 			NodeList passengerList = doc.getElementsByTagName("passenger");
 			Element firstPassenger = (Element) passengerList.item(0);
@@ -100,7 +100,7 @@ public class DomTask {
 			DOMSource dom = new DOMSource(newDoc);
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
 
-			StreamResult result = new StreamResult(new File("src/main/resources/newfile.xml"));
+			StreamResult result = new StreamResult(new File("src/main/resources/xml/newfile.xml"));
 			transformer.transform(dom, result);
 
 		} catch (Exception e) {

@@ -3,8 +3,8 @@ package com.solvd.airport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.solvd.airport.connection.ConnectionPool;
 import com.solvd.airport.connection.AbstractJDBCDao;
+import com.solvd.airport.connection.ConnectionPool;
 import com.solvd.airport.entities.Airline;
 import com.solvd.airport.entities.Airport;
 import com.solvd.airport.entities.City;
@@ -27,6 +27,12 @@ import com.solvd.airport.service.RouteService;
 public class DaoRunner extends AbstractJDBCDao {
 	private static final Logger LOGGER = LogManager.getLogger(DaoRunner.class);
 	private static ConnectionPool cp = getCp();
+
+	// When you run this, you will see in the console some null results because some
+	// fields
+	// are null in the database.
+	// Thats because in previous tasks we had to show crud operations in sql that
+	// changed some data.
 
 	public static void main(String[] arg) {
 
@@ -83,10 +89,9 @@ public class DaoRunner extends AbstractJDBCDao {
 
 		FlightService flightService = new FlightService();
 		Flight flight1 = flightService.getFlightById(1);
-		LOGGER.info(flightService.getFlightById(6));
+		LOGGER.info(flightService.getFlightById(2));
 		LOGGER.info(flightService.getAllFlights());
 		flightService.deleteFlight(flight1);
-		LOGGER.info(flightService.getAllFlights());
 
 		AirlineInAirportService aInAService = new AirlineInAirportService();
 		LOGGER.info(aInAService.getAirportsByAirlineId(1));

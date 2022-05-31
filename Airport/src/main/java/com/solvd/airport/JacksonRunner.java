@@ -26,7 +26,7 @@ public class JacksonRunner {
 		JacksonUtil.mapPassenger("src/main/resources/json/passenger.json");
 
 		try {
-			Ticket ticket = JaxbUtil.unmarshallTicket("src/main/resources/json/data.xml");
+			Ticket ticket = JaxbUtil.unmarshallTicket("src/main/resources/xml/data.xml");
 			JacksonUtil.writeTicket(ticket);
 		} catch (JAXBException | IOException e) {
 			LOGGER.info(e.getCause());

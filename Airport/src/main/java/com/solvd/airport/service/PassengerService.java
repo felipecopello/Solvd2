@@ -8,15 +8,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.solvd.airport.dao.jdbc.realization.LuggageDao;
-import com.solvd.airport.dao.jdbc.realization.PassengerDao;
 import com.solvd.airport.entities.Luggage;
 import com.solvd.airport.entities.Passenger;
 import com.solvd.airport.interfaces.ILuggageDao;
 import com.solvd.airport.interfaces.IPassengerDao;
+import com.solvd.airport.patterns.DaoFactory;
 
 public class PassengerService {
 	private static final Logger LOGGER = LogManager.getLogger(AirlineService.class);
-	private IPassengerDao passengerDao = new PassengerDao();
+	private IPassengerDao passengerDao = (IPassengerDao) DaoFactory.getDao("passenger");
 	private ILuggageDao luggageDao = new LuggageDao();
 
 	public Passenger getPassengerById(long id) {

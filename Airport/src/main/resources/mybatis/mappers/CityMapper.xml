@@ -12,10 +12,6 @@
 	  Select * from Cities where ID =#{id}
    </select>
 
-   <select id="getByAirportId" parameterType="Long" resultMap="CityResultMap">
-	  Select * from Cities join Airports on Airports.city_ID = Cities.ID where Airports.ID=#{id}
-   </select>
-
    <select id="getAll" resultMap="CityResultMap">
 	  Select * from Cities
    </select>

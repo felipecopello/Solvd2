@@ -7,13 +7,13 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.solvd.airport.dao.jdbc.realization.AirlineDao;
 import com.solvd.airport.entities.Airline;
 import com.solvd.airport.interfaces.IAirlineDao;
+import com.solvd.airport.patterns.DaoFactory;
 
 public class AirlineService {
 	private static final Logger LOGGER = LogManager.getLogger(AirlineService.class);
-	private IAirlineDao airlineDao = new AirlineDao();
+	private IAirlineDao airlineDao = (IAirlineDao) DaoFactory.getDao("airline");
 
 	public Airline getAirlineById(long id) {
 		Airline a = new Airline();

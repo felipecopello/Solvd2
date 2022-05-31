@@ -9,14 +9,13 @@ public class DomRunner {
 	private static final Logger LOGGER = LogManager.getLogger(DomRunner.class);
 
 	public static void main(String[] arg) {
-		String path = "src/main/resources/data.xml";
+		String path = "src/main/resources/xml/data.xml";
 
 		try {
 			DomTask.enteringDocument();
 			DomTask.printDom(path);
 			DomTask.creatingDomDocument();
 		} catch (Exception e) {
-
 			LOGGER.info(e.getStackTrace());
 		}
 	}
