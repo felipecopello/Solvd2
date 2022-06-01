@@ -52,11 +52,11 @@ public class DaoRunner extends AbstractJDBCDao {
 		CountryService countryService = new CountryService();
 		Country spain = new Country("Spain");
 		countryService.saveCountry(spain);
-		Country españa = countryService.getCountryById(9);
+		Country spainFromDb = countryService.getCountryById(9);
 		LOGGER.info(countryService.getAllCountries());
 
 		CityService cityService = new CityService();
-		City barcelona = new City("Barcelona", españa, 2500000);
+		City barcelona = new City("Barcelona", spainFromDb, 2500000);
 		cityService.saveCity(barcelona);
 		City barna = cityService.getCityById(8);
 		LOGGER.info(cityService.getAllCities());
