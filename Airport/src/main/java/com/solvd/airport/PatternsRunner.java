@@ -25,7 +25,8 @@ public class PatternsRunner {
 		luggages.add(luggage1);
 		luggages.add(luggage2);
 
-		Passenger pepito = new PassengerBuilder("pepito", 51, 4, "pepito@gmail.com", luggages).build();
+		Passenger pepito = new PassengerBuilder().setLuggages(luggages).setEmail("pepito@gmail.com").setPassengerId(4)
+				.setName("pepito").setAge(51).build();
 		LOGGER.info(pepito);
 
 		Pilot pilotoJuan = new Pilot();
@@ -37,7 +38,6 @@ public class PatternsRunner {
 		flightToLondon.addListener(pilotoJuan);
 		LOGGER.info(pilotoJuan.getFlightStatus());
 		flightToLondon.setFlightStatus("DEPARTED");
-		LOGGER.info(pepito.getFlightStatus());
 		LOGGER.info(pilotoJuan.getFlightStatus());
 	}
 }
