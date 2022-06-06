@@ -1,5 +1,8 @@
 package com.solvd.airport.entities;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.solvd.airport.interfaces.IListener;
 
@@ -12,6 +15,7 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "pilot")
 @XmlType(propOrder = { "pilotId", "employer" })
 public class Pilot extends Person implements IListener {
+	private static final Logger LOGGER = LogManager.getLogger(Pilot.class);
 	@JsonProperty
 	private int pilotId;
 	@JsonProperty
@@ -62,6 +66,10 @@ public class Pilot extends Person implements IListener {
 	@Override
 	public void updateFlightStatus(Object o) {
 		this.setFlightStatus((String) o);
+		if (this.flightStatus == "DELAYED") {
+			LOGGER.info(
+					"Pilot: Attention passengers our flight has been delayed, we are currently wating for further instructions. ");
+		}
 	}
 
 }

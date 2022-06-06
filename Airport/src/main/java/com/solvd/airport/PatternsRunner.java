@@ -33,9 +33,9 @@ public class PatternsRunner {
 
 		Flight flightToLondon = new Flight();
 		flightToLondon.addListener(pepito);
+		flightToLondon.addListener(pilotoJuan);
 		flightToLondon.setFlightStatus("DELAYED");
 		LOGGER.info(pepito.getFlightStatus());
-		flightToLondon.addListener(pilotoJuan);
 		LOGGER.info(pilotoJuan.getFlightStatus());
 		flightToLondon.setFlightStatus("DEPARTED");
 		LOGGER.info(pilotoJuan.getFlightStatus());

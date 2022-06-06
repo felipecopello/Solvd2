@@ -20,6 +20,7 @@ import com.solvd.airport.interfaces.IEntityDao;
 
 public class DaoFactory extends AbstractFactory {
 
+	// You can see the implementation of this in the service layer.
 	public static IEntityDao<?> getDao(String dao) {
 		dao = dao.toLowerCase();
 		switch (dao) {
